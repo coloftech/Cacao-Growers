@@ -1,0 +1,6 @@
+{
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.6",
+        "geoip2/geoip2": "~2.0"
+    }
+}
