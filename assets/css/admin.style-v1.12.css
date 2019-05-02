@@ -1,0 +1,251 @@
+.visitors-panel{
+
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+.visitors-panel .visitors-title{
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  padding-bottom: 5px;
+  border-bottom: solid 1px #ddd;
+}
+.visitors-panel .visitors-countrycode{
+  padding: 0;
+  margin: 0;
+  width: 19%;
+  display: inline-block;
+}
+
+.xradio div {
+  clear: both;
+  overflow: hidden;
+}
+
+.xradio label {
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #D1D3D4;
+  font-weight: normal;
+
+}
+
+.xradio input[type="radio"]:empty,
+.xradio input[type="checkbox"]:empty {
+  display: none;
+}
+
+.xradio input[type="radio"]:empty ~ label,
+.xradio input[type="checkbox"]:empty ~ label {
+  position: relative;
+  line-height: 2.5em;
+  /*text-indent: 3.25em;*/
+  padding-left:  3.25em;
+  /*margin-top: 2em;*/
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.xradio input[type="radio"]:empty ~ label:before,
+.xradio input[type="checkbox"]:empty ~ label:before {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 2.5em;
+  background: #D1D3D4;
+  border-radius: 3px 0 0 3px;
+}
+
+.xradio input[type="radio"]:hover:not(:checked) ~ label,
+.xradio input[type="checkbox"]:hover:not(:checked) ~ label {
+  color: #888;
+}
+
+.xradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #C2C2C2;
+}
+.xradio input[type="radio"]:hover:not(:checked) ~ label:before {
+  content: '\2297';
+  text-indent: .9em;
+  color: #C2C2C2;
+}
+
+
+.xradio input[type="radio"]:checked ~ label,
+.xradio input[type="checkbox"]:checked ~ label {
+  color: #777;
+}
+
+.xradio input[type="checkbox"]:checked ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #333;
+  background-color: #ccc;
+}
+
+.xradio input[type="radio"]:checked ~ label:before{
+  content: '\2295';
+  text-indent: .9em;
+  color: #333;
+  background-color: #ccc;
+}
+.xradio input[type="radio"]:focus ~ label:before,
+.xradio input[type="checkbox"]:focus ~ label:before {
+  box-shadow: 0 0 0 3px #999;
+}
+
+.xradio-default input[type="radio"]:checked ~ label:before,
+.xradio-default input[type="checkbox"]:checked ~ label:before {
+  color: #333;
+  background-color: #ccc;
+}
+
+.xradio-primary input[type="radio"]:checked ~ label:before,
+.xradio-primary input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #337ab7;
+}
+
+.xradio-success input[type="radio"]:checked ~ label:before,
+.xradio-success input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #5cb85c;
+}
+
+.xradio-danger input[type="radio"]:checked ~ label:before,
+.xradio-danger input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #d9534f;
+}
+
+.xradio-warning input[type="radio"]:checked ~ label:before,
+.xradio-warning input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #f0ad4e;
+}
+
+.xradio-info input[type="radio"]:checked ~ label:before,
+.xradio-info input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #5bc0de;
+}
+.width-full{
+  width: 100%;
+  float: left;
+}
+.width-half{
+  width: 50%;
+  float: left;
+}
+small{
+  font-size: 11px;
+  font-style: normal;
+  font-weight: normal;
+}
+.form-group .width-full{
+  padding: 3px 17px;
+}
+.form-group .choices input{
+  padding: 5px;
+}
+.form-control{
+  background-color: #F6F6DE;
+}
+.content-header small{
+  float: right;
+}
+
+  #map{
+    height:80vh;
+    width: 100%;
+
+  }
+
+
+
+
+/* settings */
+.editable{
+  padding:10px;
+  margin-bottom:20px;
+  background-color:#fff;
+  border:1px solid #bce8f1;
+  border-radius:4px;
+  -webkit-box-shadow:0 1px 1px rgba(0,0,0,.05);
+  box-shadow:0 1px 1px rgba(0,0,0,.05)
+}
+#partner {
+  background: url(../images/partners/partner_bg.png) 50% 50% no-repeat;
+  background-size: cover;
+}
+
+#partner {
+  color: #fff;
+  text-align: center;
+  padding:100px;
+}
+
+#partner h2 {
+  color: #fff;
+  font-size:30px;
+  font-weight:600;
+}
+
+#partner p {
+  color: #fff;
+  font-size:20px;
+
+}
+
+.partners ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.partners ul li{
+  display: inline-block;
+  float: left;
+  width: 20%;
+}
+
+.partners ul li a img {
+  margin-top:50px;
+}
+
+
+#conatcat-info{
+  background: #fff url(../images/contact.png) no-repeat 90% 0;
+  padding: 30px 0;
+}
+
+.contact-info i{
+  width: 60px;
+  height: 60px;
+  font-size: 40px;
+  line-height: 60px;
+  color: #fff;
+  background: #000;
+  text-align: center;
+  border-radius: 6px;
+}
+
+.contact-info h2{
+  margin-top: 0;
+  color: #000;
+}
+
+.contact-info{
+  color:#000;
+}
+
+/* end settings */

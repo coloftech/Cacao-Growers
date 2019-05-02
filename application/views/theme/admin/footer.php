@@ -67,7 +67,7 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/jquery-cropper/dist/cropper.js"></script>
 <?php if (isset($istinymce)): ?>
   
-    <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=2ib73acioj4e1ftii2coubvn3vjzj65xhml5aoxdnftbld0k"></script>
+    <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=<?=$tinyapiKey?>"></script>
 
 <?php endif ?>
 <?php if (isset($summernote)): ?>
@@ -83,7 +83,7 @@
     <?php if (isset($mapping)): ?>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cacao-mapping-v1.3.js"></script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDl1fNnC-kRcfPSi1eaw95L8Csm_0329Xs&callback=loadMap">
+    src="https://maps.googleapis.com/maps/api/js?key=<?=$googleApi?>&callback=loadMap">
     </script>
 
     <?php endif ?>

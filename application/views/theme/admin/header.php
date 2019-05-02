@@ -56,7 +56,7 @@
 
   <link href="<?php echo base_url(); ?>assets/plugins/jquery-cropper/dist/cropper.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/plugins/alertifyjs/css/alertify.min.css">
-  <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/admin.style-v1.11.css')?>">
+  <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/admin.style-v1.12.css')?>">
 
     <link rel="stylesheet" type="text/css"  media="print"  href="<?php echo base_url(); ?>assets/css/print.css">
 
