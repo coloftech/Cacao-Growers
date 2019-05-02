@@ -47,11 +47,14 @@ if(!empty($userInfo))
                         <form class="form" action="" method="post">
                             <div class="form-group">
                                 <label>Title</label>
-                                <input name="title" type="text" class="form-control">
+                                <input name="title" type="text" class="form-control" placeholder="Enter title here">
+                            </div><div class="form-group">
+                                <label>Author</label>
+                                <input name="author" type="text" class="form-control" placeholder="Enter author name here>
                             </div>
                             <div class="form-group">
-                                <label>Message</label>
-                                <textarea id="postcontent" name="content" class="form-control"></textarea>
+                                <label>Content</label>
+                                <div id="postcontent" name="content" class="form-control editable"></div>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary"  style="width:75px;" data-action='1'>SAVE</button>&nbsp;<button type="submit" class="btn btn-success" style="width:75px;" data-action='2'>PUBLISH</button>
@@ -144,12 +147,9 @@ if(!empty($userInfo))
 <script src="<?php echo base_url(); ?>assets/js/editUser.js" type="text/javascript"></script>
 <script>
   $(function() {
-    tinymce.init({
-      selector: 'textarea#postcontent',  // change this value according to your HTML
-      plugin: 'a_tinymce_plugin',
-      a_plugin_option: true,
-      a_configuration_option: 400
-    });
+
+
+    $('.editable').summernote();
 
   });
   var is_publish = false;

@@ -85,22 +85,32 @@ class Respondent_model extends CI_Model
 		}return false;
 
 	}
-	public function savebasic($data='',$respondent_id=0)
+	public function savebasic($data='',$respondent_id=0,$token='')
 	{
 		# code...
 		if ($respondent_id == 0) {
 			# code...
 
-		$this->db->insert($this->tbl_resp,$data);
-		$id = $this->db->insert_id();
+			$query = $this->db->select('*')
+					->from($this->tbl_resp)
+					->where('token',$token)
+					->get();
+					if($query->result()){
+						return false;
+					}
+
+				$this->db->insert($this->tbl_resp,$data);
+				$id = $this->db->insert_id();
 
                     $this->load->model('activity_model','activity');                   
                     $this->activity->addToHistory('respondentsAdd','Add basic information',$id);
 		return $id;
 		}else{
 
+             /*
                     $this->load->model('activity_model','activity');                   
                     $this->activity->addToHistory('respondentsEdit','Edit basic information',$id); 
+			*/
 			$this->db->where('respondent_id',$respondent_id);
 			return $this->db->update($this->tbl_resp,$data);
 		}
@@ -188,6 +198,14 @@ class Respondent_model extends CI_Model
 					->where('respondent_id',$respondent_id)
 					->get();
 		return $query->result();
+	}
+	public function _rollback($respondent_id)
+	{
+		# code...
+
+		$tables = array($this->tbl_resp,$this->tbl_aff,$this->tbl_org,$this->tbl_farm,$this->tbl_pest,$this->tbl_production,$this->tbl_harvest,$this->tbl_marketing);
+		$this->db->where('respondent_id', $respondent_id);
+		return $this->db->delete($tables);
 	}
 
 }

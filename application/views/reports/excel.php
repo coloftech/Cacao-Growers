@@ -21,8 +21,9 @@
                                  ?>
                             </select> 
                             <label>Type</label>
-                             <select type="text" id="reportoutput" name="reportoutput" class="form-control input-sm">
-                              <option value="excel">Excel</option>                             
+                             <select type="text" id="reporttype" name="reporttype" class="form-control input-sm">
+                              <option value="excel">Excel</option>  
+                              <option value="html">HTML</option>                             
                             </select> 
 
                             <button type="button" class="btn btn-default btn-sm generate hidden">Generate report</button>
@@ -287,8 +288,37 @@
 </section>
 
 
+<div id="htmlmodal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">HTML REPORT OUTPUT</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <div class="htmloutput table-responsive">No table</div>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="btn-print">print</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script type="text/javascript">
+
+    function showhtml(data) {
+        // body...
+        $('.htmloutput').html(data);
+        $('#htmlmodal').modal('show');
+
+    }
     $('button.generate').on('click',function(){
 
         if($('input#fullname').is(':checked')){
@@ -323,6 +353,9 @@
         var marketing_details = JSON.stringify(marketing.getchecked());
 
         var data = 'basic='+basic_details+'&farm='+farm_details+'&production='+production_details+'&pests='+pestdiseases_details+'&postharvest='+postharvest_details+'&marketing='+marketing_details+'&city='+city+'&year='+year;
+            data = data+'&reporttype='+$('#reporttype').val();
+            console.log(data);
+
         $.ajax({
             url: site_url+'/reports/generate',
             type: 'post',
@@ -333,7 +366,11 @@
             },
             success: function(response){
 
-                console.log(response);
+                console.log(response.table);
+                if ($('#reporttype').val() == 'html') {
+                    showhtml(response.table);
+                }
+                return false;
                 if (response.status == true) {
 
                 download =0;

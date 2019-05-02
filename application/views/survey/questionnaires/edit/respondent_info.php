@@ -4,7 +4,7 @@
                           <div class="continue-action">
                           <div class="form-group">
                             <label>Date of survey:</label>
-                            <input type="date" class="form-control" name="date_of_survey" value="<?=date('Y-m-d')?>" max="<?=date('Y-m-d')?>">
+                            <input type="date" class="form-control" name="date_of_survey" value="<?=isset($basicinfo[0])?$basicinfo[0]->date_of_survey:date('Y-m-d')?>" max="<?=date('Y-m-d')?>">
                           </div>
                           <label>Address: </label><input type="text" name="address" id="address" class="form-control" placeholder="Address" value="<?=isset($basicinfo[0]->address) ? $basicinfo[0]->address: '';?>">
                             

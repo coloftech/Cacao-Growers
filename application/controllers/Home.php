@@ -17,18 +17,25 @@ class Home extends BaseController
     {
         parent::__construct();
         $this->webvisitors->run();
+        $this->load->model('settings_model','settings');
+        $this->load->model('post_model','posts');
     }
     public function index($value='')
     {
+        $this->global['activemenu'] = 'home';
     	$this->global['slider'] = true;
         $this->global['pageTitle'] = 'Bohol Cacao Integrated Information System : Welcome';
         
-        $this->loadHome("home/welcome_c", $this->global, NULL , NULL,true);
+        $this->global['homeSettings'] = $this->settings->getbysection('home');
+        $this->global['listPosts'] = $this->posts->getlist();
+        
+        $this->loadHome("home/index", $this->global, NULL , NULL,true);
     }
     public function about($value='')
     {
     	# code...
 
+        $this->global['activemenu'] = 'about';
         $this->global['pageTitle'] = 'Bohol Cacao Farms : Welcome';
          $this->global['breadcrumb'] = 'About';
         $this->loadHome("home/about", $this->global, NULL , NULL, false);
@@ -37,15 +44,19 @@ class Home extends BaseController
     public function contact($value='')
     {
         # code...
+
+        $this->global['activemenu'] = 'contact';
         $this->global['pageTitle'] = 'Bohol Cacao Farms : Welcome';
         $this->global['breadcrumb'] = 'Contact';
         $this->loadHome("home/contact", $this->global, NULL , NULL, false);
 
     }
 
-    public function post($value='')
+    public function blog($value='')
     {
         # code...
+
+        $this->global['activemenu'] = 'blog';
         $this->global['pageTitle'] = 'Bohol Cacao Farms : Welcome';
         $this->global['breadcrumb'] = 'Contact';
         $this->loadHome("home/posts", $this->global, NULL , NULL, false);
@@ -55,6 +66,8 @@ class Home extends BaseController
     {
         # code...
 
+
+        $this->global['activemenu'] = 'gallery';
         $this->load->model('gallery_model','gallery');
         $this->global['images'] = $this->gallery->getimages();
 
@@ -74,6 +87,8 @@ class Home extends BaseController
     }
     public function services($value='')
     {
+
+        $this->global['activemenu'] = 'services';
 
         $this->global['pageTitle'] = 'Bohol Cacao Farms : Welcome';
          $this->global['breadcrumb'] = 'Portfolio';

@@ -417,7 +417,14 @@ class Survey extends BaseController
     }
 
 
+    public function test($value='')
+    {
+        # code...
+      $this->global['pageTitle'] = 'Bohol Cacao Farms : Survey - add new survey';
+        
+        $this->loadViews("test", $this->global, NULL , NULL);
 
+    }
 
 
 

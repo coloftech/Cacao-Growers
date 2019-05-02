@@ -35,7 +35,8 @@ class Login extends CI_Controller
         
         if(!isset($isLoggedIn) || $isLoggedIn != TRUE)
         {
-            $this->load->view('login');
+            $data['siteTitle']='Bohol Cacao Information System';
+            $this->load->view('login',$data);
         }
         else
         {

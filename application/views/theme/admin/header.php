@@ -6,6 +6,12 @@
   <title><?php echo $pageTitle; ?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link href="<?=base_url('public')?>/img/favicon.png" rel="icon">
+<?php if (isset($siteSettings)): ?>
+  
+  <link href="<?=base_url('assets/themes')?>/Company/css/style-custom.css" rel="stylesheet" />  
+
+<?php endif ?> 
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="<?=base_url('assets')?>/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -32,7 +38,8 @@
   <link rel="stylesheet" href="<?=base_url('assets')?>/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <?php endif ?>
   <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="<?=base_url('assets')?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+   <!-- <link rel="stylesheet" href="<?=base_url('assets')?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"> -->
+<link rel="stylesheet" href="<?=base_url('assets')?>/plugins/summernote/summernote.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,15 +48,15 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <!-- Google Font -->
+  <!-- Google Font -/->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
   <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-
+<!-/- -->
 
   <link href="<?php echo base_url(); ?>assets/plugins/jquery-cropper/dist/cropper.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/plugins/alertifyjs/css/alertify.min.css">
-  <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/admin.style-v1.10.css')?>">
+  <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/admin.style-v1.11.css')?>">
 
     <link rel="stylesheet" type="text/css"  media="print"  href="<?php echo base_url(); ?>assets/css/print.css">
 
@@ -363,7 +370,7 @@ switch (e) {
           <img src="<?=base_url('assets')?>/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?=$name?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -398,8 +405,8 @@ switch (e) {
           </a>
           <ul class="treeview-menu">
             
-                <li><a href="<?=base_url('survey')?>"><i class="fa fa-circle-o"></i>List all</a></li>
-                <li><a href="<?=base_url('survey/add')?>"><i class="fa fa-circle-o"></i>Add/Edit</a></li>
+                <li><a href="<?=base_url('asurvey')?>"><i class="fa fa-circle-o"></i>List all</a></li>
+                <li><a href="<?=base_url('asurvey/add')?>"><i class="fa fa-circle-o"></i>Add/Edit</a></li>
             
           </ul>
         </li>
@@ -539,7 +546,18 @@ switch (e) {
           </ul>
         </li>
         <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-        
+          <?php if($role == ROLE_ADMIN):// || $role == ROLE_MANAGER): ?>
+            <li class="treeview"><a href="#">
+            <i class="fa fa-gears"></i> <span>Administration</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+              <ul class="treeview-menu">
+                <li><a href="<?=site_url('settings/index')?>">Site settings</a></li>
+              </ul>
+            </li>
+          <?php endif ?>
       </ul>
     </section>
     <!-- /.sidebar -->

@@ -45,5 +45,12 @@ class Mail extends BaseController
         $this->global['pageTitle'] = 'Mail';
         
         $this->loadViews("mailbox/compose", $this->global, NULL , NULL);
-	}
+	}  
+    public function send($value='')
+    {
+        if($this->input->post()){
+            $obj = (object)$this->input->post();
+            var_dump($obj);
+        }
+    }
 }

@@ -1,0 +1,58 @@
+#main-slider .carousel-content{
+  background: rgba(1,1,1,.2);
+  padding: 2px;
+  border-radius: 5px;
+}
+#main-slider .carousel p {
+  color: #ddd;
+  font-size:20px;
+  text-shadow: 2px 2px 2px #111;
+}
+
+
+#main-slider .carousel h2 {
+  color: #fff;
+  text-transform:uppercase;
+  font-size:50px;
+  font-weight:800;
+}
+
+#main-slider .carousel h3 {
+  color: #fff;
+  text-transform:uppercase;
+  font-size:40px;
+  font-weight:800; 
+  text-shadow: 2px 2px 8px #FF0000;
+}
+
+
+#main-slider .carousel h3 span {
+  color: #1BBD36;
+  text-shadow: 2px 2px #fff;
+}
+
+#main-slider .carousel h3 span spani {
+  color: #000;
+}
+
+
+
+#main-slider .carousel h4 {
+  color: #fff;
+  text-transform:uppercase;
+  font-size:30px;
+  font-weight:800;
+  text-shadow: 2px 2px 8px #FF0000;
+}
+
+#main-slider .carousel h4 span {
+  color: #1BBD36;
+  text-shadow: 2px 2px #fff;
+}
+
+#main-slider .carousel h4 span spani {
+  color: #000;
+}
+.logo{
+  height: 8vh;
+}

@@ -4,9 +4,9 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2019 <a href="//phlab.tech">phlab.tech</a>.</strong> All rights
     reserved.
   </footer>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -38,7 +38,7 @@
 <?php endif ?>
 
 <!-- Bootstrap WYSIHTML5 -->
-<script src="<?=base_url('assets')?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="<?=base_url('assets')?>/plugins/bootstrap-wysihtml5/v0.3.3/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
 <script src="<?=base_url('assets')?>/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -65,14 +65,23 @@
 <script src="<?=base_url('assets')?>/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/jquery-cropper/dist/cropper.js"></script>
+<?php if (isset($istinymce)): ?>
+  
     <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=2ib73acioj4e1ftii2coubvn3vjzj65xhml5aoxdnftbld0k"></script>
+
+<?php endif ?>
+<?php if (isset($summernote)): ?>
+  <script type="text/javascript" src="<?=base_url('assets')?>/plugins/summernote/summernote.min.js"></script>
+
+<?php endif ?>
+
     <?php if (isset($visits)): ?>
    	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/map-visits-v.0.2.js"></script>      
     <?php endif ?>
-   	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cacao-v.1.js"></script>
+   	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cacao-v.1.2.js"></script>
 
     <?php if (isset($mapping)): ?>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cacao-mapping-v1.2.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cacao-mapping-v1.3.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDl1fNnC-kRcfPSi1eaw95L8Csm_0329Xs&callback=loadMap">
     </script>

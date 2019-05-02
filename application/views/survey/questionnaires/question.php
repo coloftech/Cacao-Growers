@@ -53,29 +53,29 @@ if(!empty($userInfo))
                     <!-- form start -->
                     <div class="box-body">
                             <div class="list-group">
-                              <a href="<?=site_url('survey')?>" class="list-group-item list-group-item-action active">
-                                Survey home
+                              <a href="<?=site_url('asurvey')?>" class="list-group-item list-group-item-action active">
+                                List
                               </a>
-                              <a href="<?=site_url('survey/add')?>" class="list-group-item list-group-item-action">Add/Edit respondent</a>
-                              <a class="hidden" href="<?=site_url('survey/edit')?>" class="list-group-item list-group-item-action">Edit survey</a>
-                              <a href="#" class="list-group-item list-group-item-action">List all respondents</a>
-                              <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+                              <a href="<?=site_url('asurvey/add')?>" class="list-group-item list-group-item-action">Add</a>
+                              <a href="<?=site_url('asurvey/edit')?>" class="list-group-item list-group-item-action">Edit</a>
+                              
                             </div>
                     </div>
                     
                 </div>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-9 " id="survey-area">
               <!-- general form elements -->
                 
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Add new survey</h3>
+                        <h3 class="box-title">Add Respondent</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <div class="box-body">
-                        <ul class="nav nav-tabs">
+                      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"></div>
+                        <ul class="nav nav-tabs" id="surveytabs">
                           <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
                           <li><a data-toggle="tab" href="#menu1">Farm Profile</a></li>
                           <li><a data-toggle="tab" href="#menu2">Pest & Diseases</a></li>
@@ -87,28 +87,30 @@ if(!empty($userInfo))
                         <div class="tab-content">
                           <div id="home" class="tab-pane fade in active">
                             <h3>PERSONAL INFORMATION</h3>
-                            <p><?php include_once 'respondent_info.php'; ?></p>
+                            <input type="hidden" value="<?=$token?>" id="token" name="token">
+                            <p><?php include_once 'respondent_info2.php'; ?></p>
                           </div>
                           <div id="menu1" class="tab-pane fade">
                             <h3>FARM PROFILE</h3>
-                            <p><?php include_once 'respondent_farmprofile.php'; ?></p>
+                            <p><?php include_once 'respondent_farmprofile2.php'; ?></p>
                           </div>
 
                           <div id="menu2" class="tab-pane fade">
                             <h3>PEST &amp; DISEASES</h3>
-                            <p><?php include_once 'respondent_pest.php'; ?></p>
+                            <p><?php include_once 'respondent_pest2.php'; ?></p>
                           </div>
                           <div id="menu3" class="tab-pane fade">
                             <h3>PRODUCTION MANAGEMENT</h3>
-                            <p><?php include_once 'respondent_production.php'; ?></p>
+                            <p><?php include_once 'respondent_production2.php'; ?></p>
                           </div>
                           <div id="menu4" class="tab-pane fade">
                             <h3>POST HARVEST</h3>
-                            <p><?php include_once 'respondent_harvest.php'; ?></p>
+                            <p><?php include_once 'respondent_harvest2.php'; ?></p>
                           </div>
                           <div id="menu5" class="tab-pane fade">
                             <h3>MARKETING</h3>
-                            <p><?php include_once 'respondent_marketing.php'; ?></p>
+                            <p><?php include_once 'respondent_marketing2.php'; ?></p>
+                            
                           </div>
                         </div>
                     </div>
@@ -169,50 +171,85 @@ if(!empty($userInfo))
                               });
                               $('.form-control').on('blur',function(){
                                 $(this).parent().find('.others').val($(this).val());
-                                console.log( $(this).parent().find('.others').val());
+                                
                               });
 
-/*
-  $('a[href="#menu1"]').on('click',function(){
-    if (respondent_id == 0) {
 
-      notify(false,'Please fill and save personal information first.');
-      $('.nav-tabs a[href="#home"]').tab('show');
-      return false;
-    };
-  });
+</script>
 
-  $('a[href="#menu2"]').on('click',function(){
-    if (respondent_id == 0) {
-      
-      notify(false,'Please fill and save personal information first.');
+<script type="text/javascript">
+  
+$(document).on('click','#btnsaveAll',function(){
+
+    if ($('#btn-continue').is(':visible')) {
+          $('#btn-continue').click();
+           menu_1 = false;
+            return false;
+        }
+    if (menu_1 == false) {
+
+      notify(false,'Please fill up personal information first.');
       $('.nav-tabs a[href="#home"]').tab('show');
       return false;
     };
-  });
-  $('a[href="#menu3"]').on('click',function(){
-    if (respondent_id == 0) {
-      
-      notify(false,'Please fill and save personal information first.');
-      $('.nav-tabs a[href="#home"]').tab('show');
-      return false;
-    };
-  });
-  $('a[href="#menu4"]').on('click',function(){
-    if (respondent_id == 0) {
-      
-      notify(false,'Please fill and save personal information first.');
-      $('.nav-tabs a[href="#home"]').tab('show');
-      return false;
-    };
-  });
-  $('a[href="#menu5"]').on('click',function(){
-    if (respondent_id == 0) {
-      
-      notify(false,'Please fill and save personal information first.');
-      $('.nav-tabs a[href="#home"]').tab('show');
-      return false;
-    };
-  });
-  */
+
+  var personalInfo = new Array($('#frmPersonalInfo').serializeAssoc());  
+  var frmaddress = new Array($('#frmaddress').serializeAssoc());
+  var farm = $('#frm_farmprofile').serializeAssoc();
+  var pests = $('#frmpest').serializeAssoc();
+  var production = $('#frmproduction').serializeAssoc();
+  var marketing = $('#frmmarketing').serializeAssoc();
+  var harvest = $('#frmharvest').serializeAssoc();
+
+var personal  = JSON.stringify(personalInfo.concat(frmaddress));
+    farm = JSON.stringify(new Array(farm));
+    pests = JSON.stringify(new Array(pests));
+    production = JSON.stringify(new Array(production));
+    harvest = JSON.stringify(new Array(harvest));
+    marketing = JSON.stringify(new Array(marketing));
+
+var token = $('#token').val();
+var frmdata = 'personal='+personal+
+              '&farm='+farm+
+              '&pests='+pests+
+              '&production='+production+
+              '&harvest='+harvest+
+              '&marketing='+marketing+'&token='+token;
+  $.ajax({
+    url: site_url+'/asurvey/save',
+    type: 'post',
+            dataType: 'json',
+            data: frmdata, 
+            beforeSend: function(){
+              /*console.clear();*/
+            },
+            success: function(response){
+              if (response.status == true) {
+                notify('success',response.msg);
+                $('.results').removeClass('hidden').html($('<div/>').addClass('alert alert-success').append(response.msg));
+                setTimeout(function(){
+                  location.reload();
+                },2000)
+                return false;
+              }
+                notify('warning',response.msg);
+                $('.results').html($('<div/>').addClass('alert alert-warning').append(response.msg));
+
+              console.log(response);
+            },
+              error: function (request, status, error) {
+                console.log(request.responseText);
+            }
+  })
+});
+
+</script>
+
+
+<script type="text/javascript">
+  $(function(){
+    /* convert tab to panel for mobile view*/
+    $('#surveytabs').tabToPanel();
+
+  })
 </script>

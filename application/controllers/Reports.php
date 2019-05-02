@@ -103,6 +103,13 @@ class Reports extends BaseController
     		exit();
     	}
 
+        if ($obj->reporttype == 'html') {
+            # code...
+            $this->htmlreport($column_first,$basic_data);
+            exit();
+        }
+        exit();
+
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $i=0;
@@ -159,9 +166,33 @@ class Reports extends BaseController
 
 
     }
-    public function generateexcel($value='')
+    public function htmlreport($columname='',$columnvalue='')
     {
     	# code...
+
+        $html = '<table class="table table-bordered">';
+
+        $thead = '<tr>';
+        foreach ($columname as $key) {
+            # code...
+            $thead .= "<th>$key</th>";
+        }
+        $thead .= '</tr>';
+
+
+        $html .= $thead.'</table>';
+
+            echo json_encode(array('status'=>true,'msg'=>'HTML report is selected','table'=>$html));
+
+
+
+    }
+    public function showhtml($html='')
+    {
+        # code...
+        $this->global['table'] = $this->input->post('table');
+        $this->global['pageTitle'] = 'Reports';       
+        $this->loadViews("reports/html", $this->global, NULL , NULL);
 
     }
 	public function download($file='')

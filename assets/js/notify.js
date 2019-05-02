@@ -12,7 +12,6 @@ switch (e) {
    case 'warning':
 		alertify.warning(msg);
      break;
-
    default:
    		alertify.alert(msg);
      break;

@@ -61,7 +61,9 @@
                 <label for="ExperienceOrganic_2" class="btn btn-sm"><input type="radio"  name="ExperienceOrganic"id="ExperienceOrganic_2" value="2"  data-php="<?=isset($farmprofile[0]->farming_experience_production_organic) ? $farmprofile[0]->farming_experience_production_organic : ''?>">11-20 years</label>
                 <label for="ExperienceOrganic_3" class="btn btn-sm"><input type="radio" name="ExperienceOrganic" id="ExperienceOrganic_3" value="3" data-php="<?=isset($farmprofile[0]->farming_experience_production_organic) ? $farmprofile[0]->farming_experience_production_organic : ''?>">21-30 years</label>
                 <label for="ExperienceOrganic_4" class="btn btn-sm"><input type="radio" name="ExperienceOrganic" id="ExperienceOrganic_4" value="4" data-php="<?=isset($farmprofile[0]->farming_experience_production_organic) ? $farmprofile[0]->farming_experience_production_organic : ''?>">31-40 years</label>
-                <label for="ExperienceOrganic_5" class="btn btn-sm"><input type="radio" name="ExperienceOrganic" id="ExperienceOrganic_5" value="5" data-php="<?=isset($farmprofile[0]->farming_experience_production_organic) ? $farmprofile[0]->farming_experience_production_organic : ''?>">41 years above </label>
+                <label for="ExperienceOrganic_5" class="btn btn-sm"><input type="radio" name="ExperienceOrganic" id="ExperienceOrganic_5" value="5" data-php="<?=isset($farmprofile[0]->farming_experience_production_organic) ? $farmprofile[0]->farming_experience_production_organic : ''?>">41 years above</label>
+                
+                <label for="ExperienceOrganic_6" class="btn btn-sm"><input type="radio" name="ExperienceOrganic" id="ExperienceOrganic_6" value="6" data-php="<?=isset($farmprofile[0]->farming_experience_production_organic) ? $farmprofile[0]->farming_experience_production_organic : ''?>">None</label>
                 
                 </div>
                 

@@ -49,6 +49,7 @@ class Post extends BaseController
             exit();
             
         }
+        $this->global['summernote'] =true;
         
         $this->global['pageTitle'] = 'Post : add';
         

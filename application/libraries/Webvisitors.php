@@ -52,11 +52,22 @@ public function setcookie($value='')
 		            $path = BASEPATH.'../counter/visit/'.date('Y').'/'.date('m');
 		            $file = fopen($path.'/'.date('Y-m-d').'.txt', 'a') or die("Can't create file");
 		            $ip = $this->getIp();
+
 		            $date = date('Y-m-d h:i a');
                 $time = date('h:i a');
-		            $country =  $this->getCountry($ip);
-		            $countrycode =  $this->getCountrycode($ip);
-		            $city =  $this->getCity($ip);
+                $iparray = array('127.0.0.1','192.168.0.200');
+                if (in_array($ip, $iparray)) {
+                  # code...
+
+                $country =  'localhost';
+                $countrycode =  'LO';
+                $city =  'localhost';
+                }else{
+
+                $country =  $this->getCountry($ip);
+                $countrycode =  $this->getCountrycode($ip);
+                $city =  $this->getCity($ip);
+                }
 
 		            fwrite($file, "$ip~$date~$country~$countrycode~$city"."\n");
 		            fclose($file);

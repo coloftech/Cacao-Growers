@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootstrap Tabs To Accordion Demo</title>
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/darkly/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="accordion.js"></script>
+<style>
+body { font-family: 'Roboto'; line-height: 1.7; }
+.container { margin: 150px auto; }
+</style>
+</head>
+<body>
+	<div id="jquery-script-menu">
+<div class="jquery-script-center">
+<ul>
+<li><a href="https://www.jqueryscript.net/accordion/Bootstrap-Tabs-Accordions-Mobile.html">Download This Plugin</a></li>
+<li><a href="https://www.jqueryscript.net/">Back To jQueryScript.Net</a></li>
+</ul>
+<div class="jquery-script-ads"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-2783044520727903";
+/* jQuery_demo */
+google_ad_slot = "2780937993";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div class="jquery-script-clear"></div>
+</div>
+</div>
+	<div class="container">
+		<h1>Bootstrap Tabs To Accordion Demo</h1>
+		<p class="lead">Resize the page</p>
+<!-- Bootstrap Tabs -->
+	<ul id="tabs" class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#t1">Tab 1</a></li>
+		<li><a data-toggle="tab" href="#t2">Tabs 2</a></li>
+		<li><a data-toggle="tab" href="#t3">Tab 3</a></li>
+	</ul>
+	<div class="tab-content">
+		<div id="t1" class="tab-pane fade in active">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		</div>
+		<div id="t2" class="tab-pane fade">
+			Donec pretium nibh velit, eget lobortis dui maximus nec. Nulla egestas sem et ante tempus, eget porta eros pulvinar. Morbi nec interdum elit, nec dictum ante. Suspendisse eget ipsum quis orci faucibus consequat id non turpis.
+		</div>
+		<div id="t3" class="tab-pane fade">
+			Cras ornare quam id suscipit pharetra. Duis quis auctor dui. Nunc dictum lacinia dapibus. Quisque sed rutrum sapien, sagittis egestas urna. Suspendisse pulvinar efficitur est, sit amet gravida ante hendrerit eget.
+		</div>
+	</div>
+<!-- /Bootstrap Tabs -->
+<!-- Bootstrap Accordion -->
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"></div>
+<!-- /Bootstrap Accordion -->
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+getAccordion("#tabs",768);
+});
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

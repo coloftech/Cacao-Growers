@@ -11,19 +11,20 @@
 							<span class="icon-bar"></span>
 						</button>
             <div class="navbar-brand">
-              <a href="<?=site_url()?>"><h1>THE <span>CACAO</span> GROWERS</h1></a>
+              <a href="<?=site_url()?>" class="hidden"><h1>THE <span>CACAO</span> GROWERS</h1></a>
+              <a href="<?=site_url()?>"><img class="logo" src="<?=base_url('public/img/logo.png')?>"></a>
             </div>
           </div>
 
           <div class="navbar-collapse collapse">
             <div class="menu">
               <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation"><a href="<?=site_url()?>" class="active">Home</a></li>
-                <li role="presentation"><a href="<?=site_url('home/about')?>">About Us</a></li>
-                <li role="presentation"><a href="<?=site_url('home/services')?>">Services</a></li>
-                <li role="presentation"><a href="<?=site_url('home/gallery')?>">Gallery</a></li>
-                <li role="presentation"><a href="<?=site_url('home/post')?>">Post</a></li>
-                <li role="presentation"><a href="<?=site_url('home/contact')?>">Contact</a></li>
+                <li role="presentation"><a href="<?=site_url()?>" class="<?=isset($activemenu) ? $activemenu == 'home' ? 'active': '' : 'active' ?>">Home</a></li>
+                <li role="presentation"><a href="<?=site_url('home/about')?>"  class="<?=isset($activemenu) ? $activemenu == 'about' ? 'active': '' : '' ?>">About Us</a></li>
+                <li role="presentation"><a href="<?=site_url('home/services')?>"  class="<?=isset($activemenu) ? $activemenu == 'services' ? 'active': '' : '' ?>">Services</a></li>
+                <li role="presentation"><a href="<?=site_url('home/gallery')?>"  class="<?=isset($activemenu) ? $activemenu == 'gallery' ? 'active': '' : '' ?>">Gallery</a></li>
+                <li role="presentation"><a href="<?=site_url('home/blog')?>"  class="<?=isset($activemenu) ? $activemenu == 'blog' ? 'active': '' : '' ?>">Blog</a></li>
+                <li role="presentation"><a href="<?=site_url('home/contact')?>"  class="<?=isset($activemenu) ? $activemenu == 'contact' ? 'active': '' : '' ?>">Contact</a></li>
               </ul>
             </div>
           </div>

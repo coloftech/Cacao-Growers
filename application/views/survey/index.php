@@ -42,13 +42,12 @@ if(!empty($userInfo))
                     <!-- form start -->
                     <div class="box-body">
                             <div class="list-group">
-                              <a href="<?=site_url('survey')?>" class="list-group-item list-group-item-action active">
-                                Survey home
+                              <a href="<?=site_url('asurvey')?>" class="list-group-item list-group-item-action active">
+                                List
                               </a>
-                              <a href="<?=site_url('survey/add')?>" class="list-group-item list-group-item-action">Add/Edit respondent</a>
-                              <a class="hidden" href="<?=site_url('survey/edit')?>" class="list-group-item list-group-item-action">Edit survey</a>
-                              <a href="#" class="list-group-item list-group-item-action">List all respondents</a>
-                              <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+                              <a href="<?=site_url('asurvey/add')?>" class="list-group-item list-group-item-action">Add</a>
+                              <a href="<?=site_url('asurvey/edit')?>" class="list-group-item list-group-item-action">Edit</a>
+                              
                             </div>
                     </div>
                     
@@ -100,6 +99,7 @@ if(!empty($userInfo))
                            <table class="table table-hover" id="tblsurvey">
                                <thead>
                                <tr>
+                                   <th></th>
                                    <th>Name</th>
                                    <th>Address</th>
                                    <th>Age</th>
@@ -114,6 +114,7 @@ if(!empty($userInfo))
                                    <?php foreach ($list_all as $key): ?>
                                        
                                    <tr style="cursor:pointer;">
+                                        <td><a href="<?=site_url('asurvey/edit/')?><?=$key->respondent_id?>" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></a></td>
                                        <td><?=ucwords(strtolower($key->fname))?> <?=ucwords(strtolower($key->lname))?></td>
                                        <td><?=$key->address?></td>
                                        <td><?=$key->age?></td>
