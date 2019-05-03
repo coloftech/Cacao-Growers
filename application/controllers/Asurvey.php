@@ -209,6 +209,12 @@ class Asurvey extends BaseController
 
         $Obj = (object)$post;
 
+        if(isset($Obj->land_ownership)){
+            $land_ownership = implode(',',$Obj->land_ownership);
+        }else{
+            $land_ownership='Undefined';
+        }
+
         if(isset($Obj->CacaoClones)){
             $clones = implode(',',$Obj->CacaoClones);
         }else{
@@ -232,7 +238,7 @@ class Asurvey extends BaseController
             'cacao_clone_planted'=> $clones,
             'cacao_varieties'=>$Cacaovarieties,
             'farming_experience_production_organic'=>isset($Obj->ExperienceOrganic) ? $Obj->ExperienceOrganic : '',
-            'land_ownership'=>isset($Obj->land_ownership) ? $Obj->land_ownership : '',
+            'land_ownership'=>$land_ownership,
             'farm_size'=>isset($Obj->FarmSize) ? $Obj->FarmSize : '',
             'farming_experience_production'=>isset($Obj->FarmingExperience) ? $Obj->FarmingExperience : '',
             'no_of_trees'=>!isset($Obj->Notrees) ? '' : $Obj->Notrees,
@@ -326,6 +332,14 @@ class Asurvey extends BaseController
             $Fertilizer='';
         }            
             $appFrequency = $Obj->appFrequency;
+
+            if ($Obj->practicepruning == 'Yes') {
+                # code...
+                $practicepruning_yes =  implode(',',$Obj->practicepruning_yes);
+
+            }else{
+                $practicepruning_yes = '';
+            }
         
         $production = array(
             'respondent_id'=>$respondent_id,
@@ -351,7 +365,7 @@ class Asurvey extends BaseController
             'if_inorganic'=>$Obj->inorganic,
             'fertilizer_application_frequency'=>$appFrequency,
             'practice_pruning'=>$Obj->practicepruning,
-            'practice_pruning_yes'=>$Obj->practicepruning_yes,
+            'practice_pruning_yes'=>$practicepruning_yes,
             'da_training'=>$Obj->da_conducttraining,
             'da_training_yes'=>$Obj->da_conducttraining_yes,
             'da_share_technology'=>$Obj->sharedtechnology,

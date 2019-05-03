@@ -237,7 +237,7 @@
                   </div> 
                   <div class="xradio col-md-4">
                     <div class="xradio-success">                      
-                    <input type="radio" name="appFrequency" id="application7" value="None">
+                    <input type="radio" name="appFrequency" id="application7" value="None" checked="">
                     <label for="application7">None</label>
                     </div>
                   </div> 
@@ -264,8 +264,22 @@
                     </div>
                   </div> 
 
-                  <div class="col-md-12 others-input">
-                      <small>If yes, specify here</small><input type="text" class="form-control" name="practicepruning_yes">
+                  <div class="col-md-12 others-input hidden" id="pruningyes">
+                     
+                    <div class="xradio col-md-4">
+                      <small>If yes, specify here</small>
+                    <div class="xradio-info">                      
+                    <input type="checkbox" name="practicepruning_yes[]" id="prunyes1" value="DA" >
+                    <label for="prunyes1">DA</label>
+                    </div>
+                  </div> 
+                  <div class="xradio col-md-4">
+                    <small>&nbsp;</small>
+                    <div class="xradio-info">                      
+                    <input type="checkbox" name="practicepruning_yes[]" id="prunyes2" value="Private">
+                    <label for="prunyes2">Private</label>
+                    </div>
+                  </div> 
                   </div>
                 </div>
 
@@ -338,4 +352,14 @@
     $('a[href="#menu4"]').click();
 
    });
+
+  $('input[name="practicepruning"]').on('change',function(){
+    if ($('#prun1').is(':checked')) {
+      $('#pruningyes').removeClass('hidden');
+    }else{
+      $('#pruningyes').addClass('hidden');
+      $('#prunyes1').removeAttr('checked')
+      $('#prunyes2').removeAttr('checked')
+    }
+  })
 </script> 

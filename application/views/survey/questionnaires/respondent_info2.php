@@ -227,7 +227,7 @@
                             
                             <ul class="trainingQ table-bordered">
                             <li><label>Title of Training/Seminar</label> <input type="text" class="form-control" name="trainingtitle[]"></li>
-                            <li><label>Date Conducted</label> <input type="date" class="form-control maxdate" value="<?=date('Y-m-d')?>" max="<?=date('Y-m-d')?>" name="trainingdated[]"></li>
+                            <li><label>Date Conducted</label> <input type="month" class="form-control maxdate" value="<?=date('Y-m')?>" max="<?=date('Y-m')?>" name="trainingdated[]"></li>
                             <li><label>Venue</label> <input type="text" class="form-control" name="trainingvenue[]"></li>
                             <li><label>Sponsoring Agency</label> <input type="text" class="form-control" name="trainingsponsor[]"></li>
                             </ul>

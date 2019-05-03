@@ -9,19 +9,19 @@
                 <div class="choices">
                    <div class="xradio col-md-4">
                     <div class="xradio-success">                      
-                    <input type="radio" name="land_ownership" id="lo1" value="Owned (Bought)" checked="true">
+                    <input type="checkbox" name="land_ownership[]" id="lo1" value="Owned (Bought)" >
                     <label for="lo1">Owned (Bought)</label>
                     </div>
                   </div> 
                   <div class="xradio col-md-4">
                     <div class="xradio-success">                      
-                    <input type="radio" name="land_ownership" id="lo2" value="Owned (Inherited)">
+                    <input type="checkbox" name="land_ownership[]" id="lo2" value="Owned (Inherited)">
                     <label for="lo2">Owned (Inherited)</label>
                     </div>
                   </div> 
                   <div class="xradio col-md-4">
                     <div class="xradio-success">                      
-                    <input type="radio" name="land_ownership" id="lo3" value="Tenanted">
+                    <input type="checkbox" name="land_ownership[]" id="lo3" value="Tenanted">
                     <label for="lo3">Tenanted</label>
                     </div>
                   </div>
@@ -30,15 +30,24 @@
                 <div class="choices">
                    <div class="xradio col-md-4">
                     <div class="xradio-success">                      
-                    <input type="radio" name="land_ownership" id="lo4" value="Rented">
+                    <input type="checkbox" name="land_ownership[]" id="lo4" value="Rented">
                     <label for="lo4">Rented</label>
                     </div>
-                  </div> <div class="xradio col-md-4">
+                  </div> 
+                  <div class="xradio col-md-4">
                     <div class="xradio-success">                      
-                    <input type="radio" name="land_ownership" id="lo5" value="Mortgage" >
+                    <input type="checkbox" name="land_ownership[]" id="lo5" value="Mortgage" >
                     <label for="lo5">Mortgage</label>
                     </div>
                   </div>
+
+                  <div class="xradio col-md-4">
+                    <div class="xradio-success">                      
+                    <input type="checkbox" name="land_ownership[]" id="lo6" value="Undefined" checked="true">
+                    <label for="lo6">Undefined</label>
+                    </div>
+                  </div>
+                  
                 </div>
               </div>
 
@@ -339,6 +348,13 @@
                     <label for="fc2">Plantation <small>(more than 50 trees planted)</small></label>
                     </div>
                   </div> 
+                  <div class="xradio col-md-4">
+                    <div class="xradio-success">                      
+                    <input type="radio" name="cacaoCategory" id="fc3" value="Undefined">
+                    <label for="fc3">Undefined</label>
+                    </div>
+                  </div> 
+
                 </div>
 
               </div>
@@ -364,6 +380,19 @@
                     <div class="xradio-success">                      
                     <input type="radio" name="cacaoStatus" id="cfs3" value="Inherited without rehabilitation">
                     <label for="cfs3">Inherited without rehabilitation</label>
+                    </div>
+                  </div> 
+
+                  <div class="xradio col-md-4">
+                    <div class="xradio-success">                      
+                    <input type="radio" name="cacaoStatus" id="cfs4" value="Undefined">
+                    <label for="cfs4">Undefined</label>
+                    </div>
+                  </div> 
+                  <div class="xradio col-md-4">
+                    <div class="xradio-success">                      
+                    <input type="radio" name="cacaoStatus" id="cfs5" value="Others">
+                    <label for="cfs5">Others</label>
                     </div>
                   </div> 
                 </div>
