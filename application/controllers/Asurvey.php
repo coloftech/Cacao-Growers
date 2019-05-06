@@ -62,7 +62,7 @@ class Asurvey extends BaseController
         $this->global['token']= uniqid(rand(), true);
         $this->global['pageTitle'] = 'Bohol Cacao Industry Information System : Survey - add survey';
         
-        $this->loadViews("survey/questionnaires/newEdit/question", $this->global, NULL , NULL);
+        $this->loadViews("survey/questionnaires/newEdit/equestion", $this->global, NULL , NULL);
 
     }
 
