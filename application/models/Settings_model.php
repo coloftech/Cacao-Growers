@@ -32,19 +32,37 @@ class Settings_model extends CI_Model
 		}
 			return false;
 	}
-	public function getbysection($setting='')
+	public function getbysection($setting='',$is_active=false)
 	{
 		# code...
-		$query = $this->db->select('*')
+		$this->db->select('*')
 					->from($this->table)
-					->where('settings_parent',$setting)
-					->where('is_active',1)
-					->order_by('position')
+					->where('settings_parent',$setting);
+					if ($is_active == true) {
+						# code...
+						$this->db->where('is_active',1);
+					}
+					$query = $this->db->order_by('position')
 					->get();
 
 					return $query->result();
 	}
 
+	public function lastposition($setting='')
+	{
+		# code...
+		$query = $this->db->select('position')
+					->from($this->table)
+					->where('settings_parent',$setting)
+					->order_by('position','desc')
+					->limit('1')
+					->get();
+
+					if($result = $query->result()){
+						return $result[0]->position;
+					}
+					return 0;
+	}
 	public function savedata($id='',$data=false)
 	{
 		# code...
@@ -52,6 +70,16 @@ class Settings_model extends CI_Model
 			# code...
 		$this->db->where('settings_id',$id);
 		return $this->db->update($this->table,$data);
+		}
+		return false;
+	}
+
+	public function addsection($data=false)
+	{
+		# code...
+		if (is_array($data)) {
+			# code...
+		return $this->db->insert($this->table,$data);
 		}
 		return false;
 	}

@@ -14,6 +14,7 @@
 				<li><a href="#gallery" data-toggle="tab">Gallery</a></li>
 				<li><a href="#post" data-toggle="tab">Post</a></li>
 				<li><a href="#contact" data-toggle="tab">Contact</a></li>
+				<li><a href="#contact" class="add-section">Add section</a></li>
 			</ul>
 		</div>
 		<div class="panel-body">
@@ -126,7 +127,6 @@
 	</section>
 </main>
 
-
 <!-- Modal -->
 <div id="settingModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
@@ -163,6 +163,48 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default btn-save">Save</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div id="sectionModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add new section</h4>
+      </div>
+      <div class="modal-body">
+      	<form class="form">
+      		<div class="form-group">
+      			<label>Setting Name</label>
+      			<input type="text" name="settings_name_new" value="" class="form-control">
+      		</div>
+      		<div class="form-group">
+      			<label>Setting Parent</label>
+      			<select class="form-control" name="settings_parent_new">
+      				<option value="home">Home</option>
+      				<option value="about">About</option>
+      				<option value="services">Services</option></select>
+      		</div>
+
+      		<div class="form-group">
+      			<label>Setting Status</label>
+      			<select class="form-control" name="settings_status_new">
+      				<option value="0">Disable</option>
+      				<option value="1">Enable</option>
+      			</select>
+      		</div>
+      	</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-save-section">Save</button>
       </div>
     </div>
 
@@ -235,4 +277,34 @@
 		})
 
 	}
+
+	$('.add-section').on('click',function(){
+		$('#sectionModal').modal('show');	
+	})
+
+	$('.btn-save-section').on('click',function(){
+
+		data = 'settings_parent='+$('select[name="settings_parent_new"]').val()+'&settings_name='+$('input[name="settings_name_new"]').val()+'&is_active='+$('select[name="settings_status_new"]').val();
+		$.ajax({
+			url: site_url+'/settings/addsection',
+			dataType: 'json',
+			data: data,
+			type: 'post',
+			beforeSend: function(){
+			console.clear()	
+			},
+			success: function(response){
+				if (response.status == true) {
+					notify('success',response.msg);
+				}else{
+					notify('warning',response.msg);
+					console.log(response)
+				}
+			},
+              error: function (request, status, error) {
+                console.log(request.responseText);
+            }
+		})
+
+	})
 </script>

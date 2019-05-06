@@ -14,7 +14,7 @@
   <link rel="<?=base_url('assets/themes')?>/Company/stylesheet" href="css/animate.css">
   <link href="<?=base_url('assets/themes')?>/Company/css/prettyPhoto.css" rel="stylesheet">
   <link href="<?=base_url('assets/themes')?>/Company/css/style.css" rel="stylesheet" />
-  <link href="<?=base_url('assets')?>/css/style-1.0.css" rel="stylesheet" />
+  <link href="<?=base_url('assets')?>/css/style-1.1.css" rel="stylesheet" />
   <!-- =======================================================
     Theme Name: Company
     Theme URL: https://bootstrapmade.com/company-free-html-bootstrap-template/

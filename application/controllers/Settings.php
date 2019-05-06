@@ -58,12 +58,21 @@ class Settings extends BaseController
 
         exit();
     }
-    public function add($value='')
+    public function addsection($value='')
     {
         # code...
         $obj = (object)$this->input->post();
+        $position = $this->settings->lastposition($obj->settings_parent);
 
-        var_dump($obj);
+        $data = array(
+            'settings_name'=>$obj->settings_name,
+            'settings_parent'=>$obj->settings_parent,
+            'is_active'=>$obj->is_active,
+            'position'=>$position+1,
+            'settings_value'=>"<div class=''><div class='container'><h2>Content title</h2><p>Sample content</p></div></div>"
+        );
+       $is_added =  $this->settings->addsection($data);
+       echo json_encode(array('status'=>$is_added));
     }
 
 

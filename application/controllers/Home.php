@@ -26,7 +26,7 @@ class Home extends BaseController
     	$this->global['slider'] = true;
         $this->global['pageTitle'] = 'Bohol Cacao Integrated Information System : Welcome';
         
-        $this->global['homeSettings'] = $this->settings->getbysection('home');
+        $this->global['homeSettings'] = $this->settings->getbysection('home',true);
         $this->global['listPosts'] = $this->posts->getlist();
         
         $this->loadHome("home/index", $this->global, NULL , NULL,true);
@@ -35,6 +35,7 @@ class Home extends BaseController
     {
     	# code...
 
+        $this->global['homeSettings'] = $this->settings->getbysection('about',true);
         $this->global['activemenu'] = 'about';
         $this->global['pageTitle'] = 'Bohol Cacao Farms : Welcome';
          $this->global['breadcrumb'] = 'About';
@@ -88,6 +89,7 @@ class Home extends BaseController
     public function services($value='')
     {
 
+        $this->global['homeSettings'] = $this->settings->getbysection('services',true);
         $this->global['activemenu'] = 'services';
 
         $this->global['pageTitle'] = 'Bohol Cacao Farms : Welcome';
