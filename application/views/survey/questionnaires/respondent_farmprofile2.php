@@ -8,19 +8,19 @@
                 
                 <div class="choices">
                    <div class="xradio col-md-4">
-                    <div class="xradio-success">                      
-                    <input type="checkbox" name="land_ownership[]" id="lo1" value="Owned (Bought)" >
+                    <div class="xradio-primary">                      
+                    <input type="checkbox" name="land_ownership[]" id="lo1" value="Owned (Bought)" checked="true" >
                     <label for="lo1">Owned (Bought)</label>
                     </div>
                   </div> 
                   <div class="xradio col-md-4">
-                    <div class="xradio-success">                      
+                    <div class="xradio-primary">                      
                     <input type="checkbox" name="land_ownership[]" id="lo2" value="Owned (Inherited)">
                     <label for="lo2">Owned (Inherited)</label>
                     </div>
                   </div> 
                   <div class="xradio col-md-4">
-                    <div class="xradio-success">                      
+                    <div class="xradio-primary">                      
                     <input type="checkbox" name="land_ownership[]" id="lo3" value="Tenanted">
                     <label for="lo3">Tenanted</label>
                     </div>
@@ -29,21 +29,21 @@
 
                 <div class="choices">
                    <div class="xradio col-md-4">
-                    <div class="xradio-success">                      
+                    <div class="xradio-primary">                      
                     <input type="checkbox" name="land_ownership[]" id="lo4" value="Rented">
                     <label for="lo4">Rented</label>
                     </div>
                   </div> 
                   <div class="xradio col-md-4">
-                    <div class="xradio-success">                      
+                    <div class="xradio-primary">                      
                     <input type="checkbox" name="land_ownership[]" id="lo5" value="Mortgage" >
                     <label for="lo5">Mortgage</label>
                     </div>
                   </div>
 
                   <div class="xradio col-md-4">
-                    <div class="xradio-success">                      
-                    <input type="checkbox" name="land_ownership[]" id="lo6" value="Undefined" checked="true">
+                    <div class="xradio-primary">                      
+                    <input type="checkbox" name="land_ownership[]" id="lo6" value="Undefined" ">
                     <label for="lo6">Undefined</label>
                     </div>
                   </div>
@@ -251,7 +251,7 @@
                   </div> 
                   <div class="xradio col-md-4">
                     <div class="xradio-primary">                      
-                    <input type="checkbox" name="Cacaovarieties[]" id="cv3" value="Trinitario"  checked="true">
+                    <input type="checkbox" name="Cacaovarieties[]" id="cv3" value="Trinitario"  >
                     <label for="cv3">Trinitario</label>
                     </div>
                   </div>

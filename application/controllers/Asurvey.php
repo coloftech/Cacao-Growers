@@ -382,15 +382,69 @@ class Asurvey extends BaseController
     public function harvest($post,$respondent_id=0)
     {
 
-        $Obj = (object)$post;
+        $obj = (object)$post;
+       
+
+        $pod_processing = isset($obj->pod_processing) ? $obj->pod_processing :NULL;
+
+        $pod_processing_1 ='';
+        $pod_processing_2 ='';
+        $pod_processing_3 ='';
+        $pod_processing_4 ='';
+        $pod_processing_5 ='';
+        $pod_processing_6 ='';
+        $pod_processing_7 ='';
+
+        if ($pod_processing != NULL) {
+            # code...
+
+            foreach ($pod_processing as $key) {
+                # code...
+                if ($key == 'Pod Breaking') {
+                    $pod_processing_1 = isset($obj->pod_breaking) ? $obj->pod_breaking : '';
+                }
+                if ($key == 'Bean Processing') {
+                    # code...
+                    $pod_processing_2 = isset($obj->bean_processing) ? $obj->bean_processing: '';
+                }
+                if ($key == 'Bean Sorting/Grading') {
+                    # code...
+                    $pod_processing_3 = isset($obj->bean_sorting) ? $obj->bean_sorting: '';
+                }
+                if ($key == 'Bean Roasting') {
+                    # code...
+                    $pod_processing_4 = isset($obj->bean_roasting) ? $obj->bean_roasting: '';
+                }
+                if ($key == 'Winnowing') {
+                    # code...
+                    $pod_processing_5 = isset($obj->winnowing) ? $obj->winnowing: '';
+                }
+                if ($key == 'Grinding') {
+                    # code...
+                    $pod_processing_6 = isset($obj->grinding) ? $obj->grinding: '';
+                }
+                if ($key == 'Cacao Pod Processing') {
+                    # code...
+                    $pod_processing_7 = isset($obj->cacao_pod_processing) ? $obj->cacao_pod_processing: '';
+                }
+        
+            }
+        }
 
         $harvest = array(
             'respondent_id'=>$respondent_id,
-            'pod_per_variety'=>$Obj->pod_per_variety,
-            'kg_produced_per_variety'=>$Obj->kg_produced_per_variety,
-            'total_bean_production'=>$Obj->total_bean_production,
-            'cacao_pod_sorting'=>$Obj->cacao_pod_sorting,
-            'pod_processing'=>$Obj->pod_processing
+            'pod_per_variety'=>$obj->pod_per_variety,
+            'kg_produced_per_variety'=>$obj->kg_produced_per_variety,
+            'total_bean_production'=>$obj->total_bean_production,
+            'cacao_pod_sorting'=>$obj->cacao_pod_sorting,
+            'pod_processing'=>implode(',', $pod_processing),
+            'pod_breaking'=>$pod_processing_1,
+            'bean_processing'=>$pod_processing_2,
+            'bean_sorting'=>$pod_processing_3,
+            'bean_roasting'=>$pod_processing_4,
+            'winnowing'=>$pod_processing_5,
+            'grinding'=>$pod_processing_6,
+            'cacao_pod_processing'=>$pod_processing_7
             );  
         return $result = $this->respondent->saveharvest($harvest);
         

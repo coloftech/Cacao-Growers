@@ -63,6 +63,33 @@ if(!empty($userInfo))
                     </div>
                     
                 </div>
+
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h4 class="box-title">Reminders</h4>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <div class="box-body">
+
+                   <div class="xradio col-md-12">
+                    <small>You may select more item or leave unchecked</small>
+                    <div class="xradio-primary">                      
+                    <input type="checkbox" name="checkbox" id="checkbox" checked="" class="disabled" disabled="true">
+                    <label for="checkbox" class="disabled" disabled="true">Checkbox</label>
+                    </div>
+                  </div> 
+
+                   <div class="xradio col-md-12">
+                    <small>You can select one item only</small>
+                    <div class="xradio-success">                      
+                    <input type="radio" name="radio" id="radio" checked="">
+                    <label for="radio">Radio</label>
+                    </div>
+                  </div> 
+
+                    </div>
+                    
+                </div>
             </div>
 
             <div class="col-md-9 " id="survey-area">
@@ -181,7 +208,7 @@ if(!empty($userInfo))
   
 $(document).on('click','#btnsaveAll',function(){
 
-    if ($('#btn-continue').is(':visible')) {
+ /*   if ($('#btn-continue').is(':visible')) {
           $('#btn-continue').click();
            menu_1 = false;
             return false;
@@ -191,7 +218,7 @@ $(document).on('click','#btnsaveAll',function(){
       notify(false,'Please fill up personal information first.');
       $('.nav-tabs a[href="#home"]').tab('show');
       return false;
-    };
+    };*/
 
   var personalInfo = new Array($('#frmPersonalInfo').serializeAssoc());  
   var frmaddress = new Array($('#frmaddress').serializeAssoc());
@@ -224,6 +251,7 @@ var frmdata = 'personal='+personal+
               /*console.clear();*/
             },
             success: function(response){
+
               if (response.status == true) {
                 notify('success',response.msg);
                 $('.results').removeClass('hidden').html($('<div/>').addClass('alert alert-success').append(response.msg));
