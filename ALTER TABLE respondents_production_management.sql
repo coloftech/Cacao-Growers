@@ -1,0 +1,1 @@
+ALTER TABLE `respondents_production_management` CHANGE `practice_pruning` `practice_pruning` VARCHAR(3) NOT NULL, CHANGE `da_training` `da_training` VARCHAR(3) NOT NULL, CHANGE `da_share_technology` `da_share_technology` VARCHAR(3) NOT NULL;

@@ -40,7 +40,23 @@ class Settings extends BaseController
     {
     	# code...
     	$obj = (object) $this->input->post();
-    	echo json_encode(array('status'=>true,'msg',$obj,$type));
+        $data = array(
+            'settings_name' => $obj->settings_name,
+            'settings_value' => $obj->settings_value,
+            'is_active'=>$obj->is_active
+         );
+
+        if($this->settings->savedata($obj->settings_id,$data)){
+
+            echo json_encode(array('status'=>true,'msg'=>'Settings succesfully updated.'));
+        }else{
+
+            echo json_encode(array('status'=>false,'msg'=>'No changes was made.'));
+
+        }
+
+
+        exit();
     }
     public function add($value='')
     {

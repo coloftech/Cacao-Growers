@@ -227,7 +227,7 @@
                             
                             <ul class="trainingQ table-bordered">
                             <li><label>Title of Training/Seminar</label> <input type="text" class="form-control" name="trainingtitle[]"></li>
-                            <li><label>Date Conducted</label> <input type="month" class="form-control maxdate" value="<?=date('Y-m')?>" max="<?=date('Y-m')?>" name="trainingdated[]"></li>
+                            <li><label>Date Conducted</label> <input type="text" class="form-control" name="trainingdated[]" placeholder="Year-month-day (2019-1-31) Reminders: if year only just type the year"></li>
                             <li><label>Venue</label> <input type="text" class="form-control" name="trainingvenue[]"></li>
                             <li><label>Sponsoring Agency</label> <input type="text" class="form-control" name="trainingsponsor[]"></li>
                             </ul>

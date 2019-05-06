@@ -38,10 +38,22 @@ class Settings_model extends CI_Model
 		$query = $this->db->select('*')
 					->from($this->table)
 					->where('settings_parent',$setting)
+					->where('is_active',1)
 					->order_by('position')
 					->get();
 
 					return $query->result();
+	}
+
+	public function savedata($id='',$data=false)
+	{
+		# code...
+		if (is_array($data)) {
+			# code...
+		$this->db->where('settings_id',$id);
+		return $this->db->update($this->table,$data);
+		}
+		return false;
 	}
 
 }

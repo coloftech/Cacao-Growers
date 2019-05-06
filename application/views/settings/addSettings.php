@@ -38,7 +38,9 @@
 								<td class="setttings_name"><?=$key->settings_name?></td>
 								<td class="setting_value"><?=$this->messages->limit($key->settings_value,70)?><div class="hidden"><?=$key->settings_value?></div></td>
 								<td class="settings_parent"><?=$key->settings_parent?></td>
-								<td><?=$key->is_active?></td>
+
+								<td data-status="<?=$key->is_active?>"><?php if($key->is_active > 0){echo  'Enable';}else{ echo 'Disable';}?></td>
+
 								<td><?=$key->position?></td>
 								<td><?php if ($key->settings_name == 'section4'): ?>
 									&nbsp;&nbsp;<a href="#" class="btn btn-default btn-xs btn-edit disabled" disabled='true'><i class="fa fa-edit"></i></a>
@@ -72,7 +74,9 @@
 								<td class="setttings_name"><?=$key->settings_name?></td>
 								<td class="setting_value"><?=$this->messages->limit($key->settings_value,70)?><div class="hidden"><?=$key->settings_value?></div></td>
 								<td class="settings_parent"><?=$key->settings_parent?></td>
-								<td><?=$key->is_active?></td>
+
+								<td data-status="<?=$key->is_active?>"><?php if($key->is_active > 0){echo  'Enable';}else{ echo 'Disable';}?></td>
+
 								<td><?=$key->position?></td>
 								<td>&nbsp;&nbsp;<a href="#" class="btn btn-default btn-xs btn-edit"><i class="fa fa-edit"></i></a></td>
 							</tr>
@@ -100,7 +104,7 @@
 								<td class="setttings_name"><?=$key->settings_name?></td>
 								<td class="setting_value"><?=$this->messages->limit($key->settings_value,70)?><div class="hidden"><?=$key->settings_value?></div></td>
 								<td class="settings_parent"><?=$key->settings_parent?></td>
-								<td><?=$key->is_active?></td>
+								<td data-status="<?=$key->is_active?>"><?php if($key->is_active > 0){echo  'Enable';}else{ echo 'Disable';}?></td>
 								<td><?=$key->position?></td>
 								<td>&nbsp;&nbsp;<a href="#" class="btn btn-default btn-xs btn-edit"><i class="fa fa-edit"></i></a></td>
 							</tr>
@@ -146,6 +150,14 @@
       				<option value="about">About</option>
       				<option value="services">Services</option></select>
       		</div>
+
+      		<div class="form-group">
+      			<label>Setting Status</label>
+      			<select class="form-control" name="settings_status">
+      				<option value="0">Disable</option>
+      				<option value="1">Enable</option>
+      			</select>
+      		</div>
       		<div class="editable"></div>
       	</form>
       </div>
@@ -159,21 +171,26 @@
 
 
 <script type="text/javascript">
+		var settings_id = 0;	
 	$('.btn-edit').on('click',function(){
 
 		$('#settingModal').modal('show')
 
     	var row = $(this).closest("tr");
 
-		var settings_id =row.data('id');		
+		settings_id =row.data('id');	
+
 		var settings_name = row.find('td:eq(1)').text();
 		var settings_parent = row.find('td:eq(3)').text();
 
 		var setting_value = row.find('td:eq(2)');
 		var value = setting_value.children('div').html();
 
+
 		$('input[name="settings_name"]').val(settings_name)
 		$('select[name="settings_parent"]').val(settings_parent)
+		$('select[name="settings_status"]').val(row.find('td:eq(4)').data('status'))
+
 
 		$('.editable').html(value)
 		$('.editable').summernote("reset")
@@ -185,4 +202,37 @@
 	$('form').on('submit',function(e){
 		e.preventDefault();
 	})
+
+	$('.btn-save').on('click',function(){
+		var content = $('.editable').summernote('code')
+		if (settings_id > 0) {
+			savedata(settings_id,content);
+		}
+	})
+
+	function savedata(id,content) {
+		// body...
+		data = 'settings_value='+content+'&settings_id='+id+'&settings_name='+$('input[name="settings_name"]').val()+'&is_active='+$('select[name="settings_status"]').val();
+		$.ajax({
+			url: site_url+'/settings/save',
+			dataType: 'json',
+			data: data,
+			type: 'post',
+			beforeSend: function(){
+			console.clear()	
+			},
+			success: function(response){
+				if (response.status == true) {
+					notify('success',response.msg);
+				}else{
+					notify('warning',response.msg);
+					console.log(response)
+				}
+			},
+              error: function (request, status, error) {
+                console.log(request.responseText);
+            }
+		})
+
+	}
 </script>
