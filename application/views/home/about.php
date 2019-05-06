@@ -7,17 +7,12 @@
       </div>
     </div>
   </div>
+<?php if (isset($homeSettings)): ?>
+  <?php foreach ($homeSettings as $key): ?>
 
-  <div class="aboutus">
-    <div class="container">
+      <?php echo $key->settings_value; ?>
 
-        <?php echo $this->settings->getValue('section1','about'); ?>
-    </div>
-  </div>
+   
 
-  <div class="our-team">
-    <div class="container">
-      
-        <?php echo $this->settings->getValue('section2','about'); ?>
-    </div>
-  </div>
+  <?php endforeach ?>
+<?php endif ?>

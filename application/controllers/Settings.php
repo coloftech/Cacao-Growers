@@ -72,7 +72,7 @@ class Settings extends BaseController
             'settings_value'=>"
             <div class='new-section' style='color:#000000;'>
             <div class='container'>
-            <h2>Content title</h2>
+            <h3>Content title</h3>
             <p>Sample content</p>
             </div>
             </div>"

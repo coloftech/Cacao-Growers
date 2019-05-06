@@ -256,6 +256,22 @@
                     <input type="radio" name="practicepruning" id="prun1" value="Yes" >
                     <label for="prun1">Yes</label>
                     </div>
+
+                  <div class="radio-child hidden" id="pruningyes">
+                     
+                    <div class="xradio col-md-12">
+                    <div class="xradio-info">                      
+                    <input type="checkbox" name="practicepruning_yes[]" id="prunyes1" value="DA" >
+                    <label for="prunyes1">DA</label>
+                    </div>
+                  </div> 
+                  <div class="xradio col-md-12">
+                    <div class="xradio-info">                      
+                    <input type="checkbox" name="practicepruning_yes[]" id="prunyes2" value="Private">
+                    <label for="prunyes2">Private</label>
+                    </div>
+                  </div> 
+                  </div>
                   </div> 
                   <div class="xradio col-md-4">
                     <div class="xradio-success">                      
@@ -264,12 +280,11 @@
                     </div>
                   </div> 
 
-                  <div class="col-md-12 others-input">
-                      <small>If yes, specify here</small><input type="text" class="form-control" name="practicepruning_yes"  value="<?=isset($productions[0]->practice_pruning_yes) ? $productions[0]->practice_pruning_yes: '';?>">
-                  </div>
                 </div>
 
               </div>
+
+
 
             <div class="form-group width-full">
 
@@ -343,6 +358,18 @@
    });
 
 
+
+  $('input[name="practicepruning"]').on('click',function () {
+    // body...
+
+    var val = $(this).val().trim();
+    if(val=='Yes'){
+    $(this).parent().parent().find('.radio-child').removeClass('hidden')
+    }else{
+
+    $(this).parent().parent().parent().find('.radio-child').addClass('hidden')
+    }
+  })
 
   $(function(){
 
