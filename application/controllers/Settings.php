@@ -69,7 +69,13 @@ class Settings extends BaseController
             'settings_parent'=>$obj->settings_parent,
             'is_active'=>$obj->is_active,
             'position'=>$position+1,
-            'settings_value'=>"<div class=''><div class='container'><h2>Content title</h2><p>Sample content</p></div></div>"
+            'settings_value'=>"
+            <div class='new-section' style='color:#000000;'>
+            <div class='container'>
+            <h2>Content title</h2>
+            <p>Sample content</p>
+            </div>
+            </div>"
         );
        $is_added =  $this->settings->addsection($data);
        echo json_encode(array('status'=>$is_added));
