@@ -1,4 +1,4 @@
-# bohol-cacao-information-system
+# BOHOL CACAO INDUSTRY INFORAMTION SYSTEM
 System requirements:<br/>
 <br/>
 a. PHP5.6 and later<br/>
