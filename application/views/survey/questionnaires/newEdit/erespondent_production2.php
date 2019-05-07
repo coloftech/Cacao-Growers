@@ -5,10 +5,10 @@
                 <div class="choices">
                     <div class="width-full">
                         <div class="width-half">
-                            <input type="text" class="form-control" name="coordinates_lat" placeholder="Lat">
+                            <input type="text" class="form-control" name="coordinates_lat" placeholder="Lat"  value="<?=isset($productions[0]->latitude) ? $productions[0]->latitude: '';?>">
                         </div>
                         <div class="width-half">
-                            <input type="text" class="form-control" name="coordinates_long" placeholder="Long">
+                            <input type="text" class="form-control" name="coordinates_long" placeholder="Long"  value="<?=isset($productions[0]->longitude) ? $productions[0]->longitude: '';?>">
                         </div>
                 
                     </div>

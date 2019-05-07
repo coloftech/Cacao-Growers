@@ -1,27 +1,27 @@
             
             <form id="frm_farmprofile" class="form">   
 
-               
+              
               <div class="form-group width-full">
 
                 <label class="question">Land Ownership</label>
                 
                 <div class="choices">
                    <div class="xradio col-md-4">
-                    <div class="xradio-success">                      
-                    <input type="radio" name="land_ownership" id="lo1" value="Owned (Bought)" checked="true">
+                    <div class="xradio-primary">                      
+                    <input type="checkbox" name="land_ownership[]" id="lo1" value="Owned (Bought)"  >
                     <label for="lo1">Owned (Bought)</label>
                     </div>
                   </div> 
                   <div class="xradio col-md-4">
-                    <div class="xradio-success">                      
-                    <input type="radio" name="land_ownership" id="lo2" value="Owned (Inherited)">
+                    <div class="xradio-primary">                      
+                    <input type="checkbox" name="land_ownership[]" id="lo2" value="Owned (Inherited)">
                     <label for="lo2">Owned (Inherited)</label>
                     </div>
                   </div> 
                   <div class="xradio col-md-4">
-                    <div class="xradio-success">                      
-                    <input type="radio" name="land_ownership" id="lo3" value="Tenanted">
+                    <div class="xradio-primary">                      
+                    <input type="checkbox" name="land_ownership[]" id="lo3" value="Tenanted">
                     <label for="lo3">Tenanted</label>
                     </div>
                   </div>
@@ -29,18 +29,28 @@
 
                 <div class="choices">
                    <div class="xradio col-md-4">
-                    <div class="xradio-success">                      
-                    <input type="radio" name="land_ownership" id="lo4" value="Rented">
+                    <div class="xradio-primary">                      
+                    <input type="checkbox" name="land_ownership[]" id="lo4" value="Rented">
                     <label for="lo4">Rented</label>
                     </div>
-                  </div> <div class="xradio col-md-4">
-                    <div class="xradio-success">                      
-                    <input type="radio" name="land_ownership" id="lo5" value="Mortgage" >
+                  </div> 
+                  <div class="xradio col-md-4">
+                    <div class="xradio-primary">                      
+                    <input type="checkbox" name="land_ownership[]" id="lo5" value="Mortgage" >
                     <label for="lo5">Mortgage</label>
                     </div>
                   </div>
+
+                  <div class="xradio col-md-4">
+                    <div class="xradio-primary">                      
+                    <input type="checkbox" name="land_ownership[]" id="lo6" value="Undefined" ">
+                    <label for="lo6">Undefined</label>
+                    </div>
+                  </div>
+                  
                 </div>
               </div>
+
 
               
               <div class="form-group width-full">
@@ -483,6 +493,7 @@
 
                 <div class="hidden">
                   <div id="dcacao_clones"><?php echo json_encode(explode(',', isset($farmprofile[0]->cacao_clone_planted)?$farmprofile[0]->cacao_clone_planted:'')); ?></div>
+                  <div id="dland_ownership"><?php echo json_encode(explode(',', isset($farmprofile[0]->land_ownership)?$farmprofile[0]->land_ownership:'')); ?></div>
 
                   <div id="dcacao_varieties"><?php echo json_encode(explode(',', isset($farmprofile[0]->cacao_varieties)?$farmprofile[0]->cacao_varieties:'')); ?></div>
 
@@ -507,11 +518,12 @@
   /*on document load */
 $(function(){
 
+    var dland_ownership = JSON.parse($('#dland_ownership').html());
     var cacao_clones = JSON.parse($('#dcacao_clones').html());
     var cacao_varieties = JSON.parse($('#dcacao_varieties').html());
     var propagationtypes = JSON.parse($('#dpropagationtypes').html());
     var farmall = JSON.parse($('#farmall').html());
-    
+
 if (farmall) {
 
     var farmCheckboxes = $('#frm_farmprofile input:checkbox');
@@ -521,7 +533,16 @@ if (farmall) {
 
       var input = $(this);
       var val = $(this).val();
-        
+
+         
+        dland_ownership.forEach(function(item) {  
+          
+          if(val.toLowerCase() == item.toLowerCase()){
+             
+                input.prop('checked', true);
+          }
+      });       
+
         cacao_clones.forEach(function(item) {  
 
           if(val.toLowerCase() == item.toLowerCase()){
@@ -558,9 +579,9 @@ var farmradio = $('#frm_farmprofile input:radio');
       var val = $(this).val();
       var parent = $(this).attr('name');
 
-          if(farmall.land_ownership == val && parent == 'land_ownership'){
+          /*if(farmall.land_ownership == val && parent == 'land_ownership'){
             $(this).prop('checked',true);
-          }
+          }*/
 
           if($.trim(farmall.farm_size) == val && parent == 'FarmSize'){
             $(this).prop('checked',true);

@@ -226,9 +226,6 @@
                   <div class="col-md-12 others-input others3">
                       <small>Mechanical control, specify here</small><input type="text" class="form-control" name="mechanicalcontrol">
                   </div>
-                  <div class="col-md-12 others-input others3">
-                      <small>Chemical control, specify here</small><input type="text" class="form-control" name="pruningcontrol">
-                  </div>
 
                   <div class="col-md-12 others-input others1">
                       <small>Others, specify here</small><input type="text" class="form-control" name="othersdiseaseControl">

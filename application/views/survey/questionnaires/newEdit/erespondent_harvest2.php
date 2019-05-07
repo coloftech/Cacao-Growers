@@ -40,7 +40,7 @@
                   </div> 
                   <div class="xradio col-md-4">
                     <div class="xradio-success">                      
-                    <input type="radio" name="cacao_pod_sorting" id="cacao_pod_sorting3" value="None" checked="true">
+                    <input type="radio" name="cacao_pod_sorting" id="cacao_pod_sorting3" value="None" >
                     <label for="cacao_pod_sorting3">None</label>
                     </div>
                   </div> 
@@ -65,7 +65,7 @@
                         
                              <div class="xradio col-md-12">
                               <div class="xradio-success">                      
-                              <input type="radio" name="pod_breaking" id="pod_breaking_1" value="Manual" checked="true">
+                              <input type="radio" name="pod_breaking" id="pod_breaking_1" value="Manual" >
                               <label for="pod_breaking_1">Manual</label>
                               </div>
                             </div> 
@@ -89,7 +89,7 @@
                           
                              <div class="xradio col-md-12">
                               <div class="xradio-success">                      
-                              <input type="radio" name="bean_processing" id="bean_processing_1" value="Manual" checked="true">
+                              <input type="radio" name="bean_processing" id="bean_processing_1" value="Manual" >
                               <label for="bean_processing_1">Manual</label>
                               </div>
                             </div> 
@@ -111,7 +111,7 @@
                         
                              <div class="xradio col-md-12">
                               <div class="xradio-success">                      
-                              <input type="radio" name="bean_sorting" id="bean_sorting_1" value="Manual" checked="true">
+                              <input type="radio" name="bean_sorting" id="bean_sorting_1" value="Manual" >
                               <label for="bean_sorting_1">Manual</label>
                               </div>
                             </div> 
@@ -133,7 +133,7 @@
                         
                              <div class="xradio col-md-12">
                               <div class="xradio-success">                      
-                              <input type="radio" name="bean_roasting" id="bean_roasting_1" value="Manual" checked="true">
+                              <input type="radio" name="bean_roasting" id="bean_roasting_1" value="Manual" >
                               <label for="bean_roasting_1">Manual</label>
                               </div>
                             </div> 
@@ -156,7 +156,7 @@
                         
                              <div class="xradio col-md-12">
                               <div class="xradio-success">                      
-                              <input type="radio" name="winnowing" id="winnowing_1" value="Manual" checked="true">
+                              <input type="radio" name="winnowing" id="winnowing_1" value="Manual" >
                               <label for="winnowing_1">Manual</label>
                               </div>
                             </div> 
@@ -178,7 +178,7 @@
                             
                              <div class="xradio col-md-12">
                               <div class="xradio-success">                      
-                              <input type="radio" name="grinding" id="grinding_1" value="Manual" checked="true">
+                              <input type="radio" name="grinding" id="grinding_1" value="Manual" >
                               <label for="grinding_1">Manual</label>
                               </div>
                             </div> 
@@ -201,7 +201,7 @@
                              <div class="radio-child hidden">
                                <div class="xradio col-md-12">
                               <div class="xradio-success">                      
-                              <input type="radio" name="cacao_pod_processing" id="cacao_pod_processing_1" value="Composting" checked="true">
+                              <input type="radio" name="cacao_pod_processing" id="cacao_pod_processing_1" value="Composting" >
                               <label for="cacao_pod_processing_1">Composting</label>
                               </div>
                             </div> 
@@ -259,7 +259,13 @@
 $(function(){
 
     var vharvests = JSON.parse($('#vharvests').html());
+    
+    //console.log(vharvests)
+
     checkedRadioHarvest(vharvests);
+
+    checkboxHarvest(vharvests)
+
 })
 
 
@@ -275,6 +281,72 @@ $(function(){
 
     }
   })
+  var checkboxHarvest = function (data) {
+    // body...
+    //console.log(data.pod_processing.split(','))
+    var checkbox = $('#frmharvest input:checkbox[name="pod_processing[]"]')
+     $.each(checkbox,function(){
+        var val = $(this).val()
+
+          if(data.pod_processing.split(',').inArray(val)){
+            $(this).prop('checked',true);
+
+            $(this).parent().parent().find('.radio-child').removeClass('hidden')
+            pod_processing_rd(val,this,data);
+          }
+     });
+
+
+
+  }
+  var pod_processing_rd = function(item,elem,data){
+
+    var radioChild = $(elem).parent().parent().find('.radio-child');
+    var radio = $(radioChild).find('input');
+    $.each(radio,function(){
+      var val = $(this).val()
+      var input = $(this)
+      var name = $(this).attr('name')
+
+      if (name == 'pod_breaking') {
+        if (data.pod_breaking == val) {
+          input.prop('checked',true)
+        }
+      }
+
+      if (name == 'bean_processing') {
+        if (data.bean_processing == val) {
+          input.prop('checked',true)
+        }
+      }
+      if (name == 'bean_roasting') {
+        if (data.pod_breaking == val) {
+          input.prop('checked',true)
+        }
+      }
+      if (name == 'bean_sorting') {
+        if (data.bean_sorting == val) {
+          input.prop('checked',true)
+        }
+      }
+      if (name == 'cacao_pod_processing') {
+        if (data.cacao_pod_processing == val) {
+          input.prop('checked',true)
+        }
+      }
+      if (name == 'grinding') {
+        if (data.grinding == val) {
+          input.prop('checked',true)
+        }
+      }
+      if (name == 'winnowing') {
+        if (data.winnowing == val) {
+          input.prop('checked',true)
+        }
+      }
+      
+    })
+  }
   
   var checkedRadioHarvest = function(data){
     $('#frmharvest input:radio').removeAttr('checked');

@@ -41,7 +41,7 @@ class Asurvey extends BaseController
         $this->global['token']= uniqid(rand(), true);
         $this->global['pageTitle'] = 'Bohol Cacao Industry Information System : Survey - add survey';
         
-        $this->loadViews("survey/questionnaires/question", $this->global, NULL , NULL);
+        $this->loadViews("survey/questionnaires/add/question", $this->global, NULL , NULL);
 
     }
 
@@ -68,6 +68,24 @@ class Asurvey extends BaseController
 
 
 
+    public function searchrespondent($value='')
+    {
+        # code...
+        $object = (object)$this->input->post();
+        if ($result = $this->respondent->searchrespondent(array('fname'=>strtoupper($object->fname),'lname'=>strtoupper($object->lname)))) {
+          $e = json_decode($this->messages->exist());
+          $respondents = array();
+          foreach ($result as $key) {
+              # code...
+            $respondents[] = array('respondent_id'=>$key->respondent_id,'date_of_survey'=>$key->date_of_survey,'date_added'=>$key->date_added);
+          }
+          /*$e->respondent_id = $result[0]->respondent_id;*/
+          $e->respondents = $respondents;
+          echo json_encode($e);
+        }else{
+           echo $this->messages->notexist();
+        }
+    }
 
 
 
