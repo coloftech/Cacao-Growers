@@ -39,10 +39,11 @@
                     			<thead>
                     				<tr>
                     				<th>Town/City</th>
-                    				<th>Expected total no of cacao farmer</th>
-                    				<th>Current total no of cacao farmer</th>
+                    				<th>Total no of cacao farmer base on master list</th>
+                    				<th>Total of cacao farmer surveyed</th>
                     				<th>Percentage</th>
                     				<th>Year</th>
+                    				<th></th>
                     			</tr>
                     			</thead>
                     			<tbody>
@@ -53,6 +54,7 @@
                     				<td>0</td>
                     				<td>0%</td>
                     				<td><?=$key['year']?></td>
+                    				<td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></a></td>
                     			</tr>
                     				<?php endforeach ?>
                     			</tbody>

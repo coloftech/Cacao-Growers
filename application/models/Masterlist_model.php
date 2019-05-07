@@ -5,13 +5,14 @@
  */
 class Masterlist_model extends CI_Model
 {
-	private $table = 'survey_masterlist';
+	private $masterlist = 'survey_masterlist';
+	private $respondents = 'respondents';
 	public function add($data='')
 	{
 		# code...
 		if (is_array($data)) {
 
-		return $this->db->insert($this->table,$data);
+		return $this->db->insert($this->masterlist,$data);
 
 		}
 		    return false;
@@ -20,7 +21,7 @@ class Masterlist_model extends CI_Model
 	{
 		# code...
 		$this->db->select('town_name,town_code,no_of_farmer,year')
-				->from($this->table);
+				->from($this->masterlist);
 		if ($year > 0) {
 			# code...
 			$this->db->where('year',$year);
@@ -28,7 +29,7 @@ class Masterlist_model extends CI_Model
 		$query = $this->db->order_by('town_name','ASC')->get();
 
 		return $query->result_array();
-		
+
 
 	}
 
