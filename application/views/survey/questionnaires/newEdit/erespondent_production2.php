@@ -368,6 +368,9 @@
     }else{
 
     $(this).parent().parent().parent().find('.radio-child').addClass('hidden')
+
+          $('#prunyes1').removeAttr('checked')
+          $('#prunyes2').removeAttr('checked')
     }
   })
 
@@ -436,6 +439,7 @@
 
     var freq_i = 0;
     var freq = false;
+    var ispruning = false;
     $.each(radio,function(){
 
       var val = $(this).val();
@@ -453,13 +457,30 @@
           $('#application7').prop('checked',true);
         }
       }
+
       if(data.practice_pruning == 0){
         data.practice_pruning ='No';
       }
 
+
       if(data.practice_pruning == val &&  'practicepruning' == parent ){
 
         $(this).prop('checked',true);
+      }
+      if(data.practice_pruning == 'Yes' && ispruning == false){
+        $('#pruningyes').removeClass('hidden')
+        var pruning = data.practice_pruning_yes.split(',')
+
+        ispruning = true;
+
+        if (pruning.inArray('DA')) {
+
+          $('#prunyes1').prop('checked',true)
+        }
+        if (pruning.inArray('Private')) {
+
+          $('#prunyes2').prop('checked',true)
+        }
       }
 
       if(data.da_training == 0){

@@ -107,7 +107,14 @@ class Asurvey extends BaseController
         $marketing = json_decode($post['marketing'],true);
         $token = uniqid(rand(), true);
             $this->db->trans_start();
-        $respondent_id = $this->personalinfo($personal,$token,$respondent_id);
+            if ($respondent_id > 0) {
+                # code...
+                $this->personalinfo($personal,$token,$respondent_id);
+
+            }else{
+                $respondent_id = $this->personalinfo($personal,$token,0);
+            }
+
         
         if ($respondent_id > 0) {
             # code...
