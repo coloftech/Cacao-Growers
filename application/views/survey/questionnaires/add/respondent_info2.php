@@ -315,7 +315,7 @@ var searchRespondent = function (e) {
   var lname = $('#lname').val();
   var frmdata = 'lname='+lname+'&fname='+fname; 
         $.ajax({
-            url: site_url+'/survey/searchrespondent',
+            url: site_url+'/asurvey/searchrespondent',
             type: 'post',
             dataType: 'json',
             data: frmdata, 
