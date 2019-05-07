@@ -512,6 +512,25 @@ class Asurvey extends BaseController
     }
 
 
+    public function masterlist($value='')
+    {
+        if ($this->input->post()) {
+
+            $obj = (object)$this->input->post();
+
+
+
+        }
+        $this->load->model('masterlist_model','masterlist');
+        $listoftown = $this->masterlist->listall(0);
+        $this->global['listoftown'] = $listoftown; /* array(
+            array('year'=>2019,'town_code'=>817,'town_name'=>'Batuan','no_of_farmer'=>20)
+        );*/
+        $this->global['pageTitle'] = 'BCIIS : Survey - Master list';        
+        $this->loadViews("survey/masterlist", $this->global, NULL , NULL);
+    }
+
+
 
 
 }

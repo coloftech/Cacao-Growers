@@ -78,9 +78,11 @@
  alertify.set('notifier','position', 'top-right');
  alertify.defaults.glossary.title = 'NOTIFICATION';
 
-var notify = function (e,msg) {
+var notify = function (e,msg,title) {
   // body...
-
+if (title) {
+ alertify.defaults.glossary.title = title;
+}
 switch (e) {
    case 'success':
       alertify.success(msg);
@@ -405,7 +407,8 @@ switch (e) {
           </a>
           <ul class="treeview-menu">
             
-                <li><a href="<?=base_url('asurvey')?>"><i class="fa fa-circle-o"></i>List all</a></li>
+                <li><a href="<?=base_url('asurvey/masterlist')?>"><i class="fa fa-circle-o"></i>Masterlist</a></li>
+                <li><a href="<?=base_url('asurvey')?>"><i class="fa fa-circle-o"></i>Encoded</a></li>
                 <li><a href="<?=base_url('asurvey/add')?>"><i class="fa fa-circle-o"></i>Add/Edit</a></li>
             
           </ul>
