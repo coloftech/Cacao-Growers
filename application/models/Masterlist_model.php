@@ -28,10 +28,45 @@ class Masterlist_model extends CI_Model
 		}
 		$query = $this->db->order_by('town_name','ASC')->get();
 
-		return $query->result_array();
-
+		if($result = $query->result_array()){
+			$obj = [];$i=0;
+			foreach ($result as $key) {
+				# code...
+				$obj[$i] = $key;				
+				$obj[$i]['no_of_respondent'] = $this->getTotalFarmer($key['town_code']);
+				
+				$i++;
+			}
+			return $obj;
+		}
+		
+		return false;
 
 	}
+	
+	public function getTotalFarmer($town_code=0)
+	{
+		# code...
+		$query = $this->db->select('count(respondent_id) as no_of_respondent')
+			->from($this->respondents)
+			->where('city',$town_code)
+			->get();
+			if($result = $query->result()){
+				return $result[0]->no_of_respondent;
+			}
+			return 0;
+	}
+
+	public function addTown($data='')
+	{
+		# code...
+		if (is_array($data)) {
+			# code...
+			return $this->db->insert($this->masterlist,$data);
+		}
+		return false;
+	}
+	
 
 
 

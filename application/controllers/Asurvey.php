@@ -514,14 +514,18 @@ class Asurvey extends BaseController
 
     public function masterlist($value='')
     {
+        $this->load->model('masterlist_model','masterlist');
+
         if ($this->input->post()) {
 
-            $obj = (object)$this->input->post();
+            $data = $this->input->post();
+            $is_added = $this->masterlist->addTown($data);
+            echo json_encode(array('status'=>$is_added));
+            exit();
 
 
 
         }
-        $this->load->model('masterlist_model','masterlist');
         $listoftown = $this->masterlist->listall(0);
         $this->global['listoftown'] = $listoftown; /* array(
             array('year'=>2019,'town_code'=>817,'town_name'=>'Batuan','no_of_farmer'=>20)

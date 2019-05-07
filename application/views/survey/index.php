@@ -30,31 +30,9 @@ if(!empty($userInfo))
     </section>
     
     <section class="content">
-    
-        <div class="row">
-            <!-- left column -->
-            <div class="col-md-3 print-none">
 
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <h3 class="box-title">Survey options</h3>
-                    </div><!-- /.box-header -->
-                    <!-- form start -->
-                    <div class="box-body">
-                            <div class="list-group">
-                              <a href="<?=site_url('asurvey')?>" class="list-group-item list-group-item-action active">
-                                List
-                              </a>
-                              <a href="<?=site_url('asurvey/add')?>" class="list-group-item list-group-item-action">Add</a>
-                              <a href="<?=site_url('asurvey/edit')?>" class="list-group-item list-group-item-action">Edit</a>
-                              
-                            </div>
-                    </div>
-                    
-                </div>
-            </div>
             
-            <div class="col-md-9">
+            <div class="col-md-12">
               <!-- general form elements -->
                 
                 
@@ -133,7 +111,29 @@ if(!empty($userInfo))
                     
                 </div>
             </div>
-            
+                
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-3 print-none hidden">
+
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">Survey options</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <div class="box-body">
+                            <div class="list-group">
+                              <a href="<?=site_url('asurvey')?>" class="list-group-item list-group-item-action active">
+                                List
+                              </a>
+                              <a href="<?=site_url('asurvey/add')?>" class="list-group-item list-group-item-action">Add</a>
+                              <a href="<?=site_url('asurvey/edit')?>" class="list-group-item list-group-item-action">Edit</a>
+                              
+                            </div>
+                    </div>
+                    
+                </div>
+            </div>
         </div>    
     </section>
 

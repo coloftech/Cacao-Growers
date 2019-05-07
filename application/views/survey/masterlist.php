@@ -6,31 +6,12 @@
       </h1>
     </section>
 	<div class="content">
-		<div class="col-md-3">
-			
-		        <div class="box box-primary">
-                    <div class="box-header">
-                        <h3 class="box-title">Survey option</h3>
-                    </div><!-- /.box-header -->
-                    <!-- form start -->
-                    <div class="box-body">
-                    	
 
-                            <div class="list-group">
-                              
-                              <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#masterlistmodal">Add</a>
-                              
-                            </div>
-
-                    </div>
-                    
-                </div>
-		</div>
 		<div class="col-md-9">
 			
 		        <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Survey masterlist</h3>
+                        <h3 class="box-title">Masterlist table</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <div class="box-body">
@@ -47,19 +28,43 @@
                     			</tr>
                     			</thead>
                     			<tbody>
-                    				<?php foreach ($listoftown as $key): ?>
+                    				<?php if (is_array($listoftown)): ?>
+                    					<?php foreach ($listoftown as $key): ?>
                     					<tr>
                     				<td><?=$key['town_name']?></td>
                     				<td><?=$key['no_of_farmer']?></td>
-                    				<td>0</td>
+                    				<td><?=$key['no_of_respondent']?></td>
                     				<td>0%</td>
                     				<td><?=$key['year']?></td>
                     				<td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></a></td>
                     			</tr>
                     				<?php endforeach ?>
+                    				<?php endif ?>
+                    				
                     			</tbody>
                     		</table>
                     	</div>
+                    </div>
+                    
+                </div>
+		</div>
+
+		<div class="col-md-3">
+			
+		        <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">Masterlist option</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <div class="box-body">
+                    	
+
+                            <div class="list-group">
+                              
+                              <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#masterlistmodal">Add</a>
+                              
+                            </div>
+
                     </div>
                     
                 </div>
@@ -169,19 +174,8 @@ $('#btn-add').on('click',function(){
 		if (is_allowed) {
 			var data = {'town_name':town_name,'town_code':town_code,'year':year,'no_of_farmer':no_of_farmer}
 			
-			var newdata = {'year':parseInt(year),'town_code':parseInt(town_code),'town_name':town_name,'no_of_farmer':parseInt(no_of_farmer)}
-			listoftown.push(newdata);
-			$('tbody').append('<tr>'+
-				'<td>'+town_name+'</td>'+
-				'<td>'+no_of_farmer+'</td>'+
-				'<td></td>'+
-				'<td></td>'+
-				'<td>'+year+'</td>'+
-				+'</tr>');
-
-			notify('success',data.town_name)
-
-			$('#masterlistmodal').modal('hide')
+			var newdata = {'year':parseInt(year),'town_code':parseInt(town_code),'town_name':town_name,'no_of_farmer':parseInt(no_of_farmer),'no_of_respondent':0}
+			savemasterlist(data,newdata);
 		
 		}else{
 			notify(false,'The selected town and year is already exist!','Insert error!')
@@ -190,4 +184,43 @@ $('#btn-add').on('click',function(){
 	}
 
 })
+ var savemasterlist = function(data,newdata){
+ 	
+
+  $.ajax({
+    url: site_url+'/asurvey/masterlist',
+    type: 'post',
+            dataType: 'json',
+            data: data, 
+            beforeSend: function(){
+              console.clear();
+            },
+            success: function(response){              
+              
+             if(response.status == true){
+
+           		listoftown.push(newdata);
+				$('tbody').append('<tr>'+
+				'<td>'+newdata.town_name+'</td>'+
+				'<td>'+newdata.no_of_farmer+'</td>'+
+				'<td></td>'+
+				'<td></td>'+
+				'<td>'+newdata.year+'</td>'+
+				'<td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></a></td>'+
+				+'</tr>');
+
+				notify('success','New data was successfully added.','Insert success!');
+				$('#masterlistmodal').modal('hide')
+             }else{
+
+				notify('warning','No data was added.','Insert error!');
+             }
+
+            },
+              error: function (request, status, error) {
+                console.log(request.responseText);
+            }
+  })
+
+ }
 </script>

@@ -409,7 +409,7 @@ switch (e) {
             
                 <li><a href="<?=base_url('asurvey/masterlist')?>"><i class="fa fa-circle-o"></i>Masterlist</a></li>
                 <li><a href="<?=base_url('asurvey')?>"><i class="fa fa-circle-o"></i>Encoded</a></li>
-                <li><a href="<?=base_url('asurvey/add')?>"><i class="fa fa-circle-o"></i>Add/Edit</a></li>
+                <li><a href="<?=base_url('asurvey/add')?>"><i class="fa fa-circle-o"></i>Add respondent</a></li>
             
           </ul>
         </li>
