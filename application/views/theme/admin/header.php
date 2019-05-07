@@ -56,7 +56,7 @@
 
   <link href="<?php echo base_url(); ?>assets/plugins/jquery-cropper/dist/cropper.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/plugins/alertifyjs/css/alertify.min.css">
-  <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/admin.style-v1.12.css')?>">
+  <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/admin.style-v1.14.css')?>">
 
     <link rel="stylesheet" type="text/css"  media="print"  href="<?php echo base_url(); ?>assets/css/print.css">
 
@@ -106,7 +106,7 @@ switch (e) {
   <header class="main-header">
     <!-- Logo -->
             <!-- Logo -->
-        <a href="<?php echo base_url(); ?>" class="logo">
+        <a href="<?php echo site_url('dashboard'); ?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>BC</b>IIS</span>
           <!-- logo for regular state and mobile devices -->
@@ -407,8 +407,8 @@ switch (e) {
           </a>
           <ul class="treeview-menu">
             
-                <li><a href="<?=base_url('asurvey/masterlist')?>"><i class="fa fa-circle-o"></i>Masterlist</a></li>
-                <li><a href="<?=base_url('asurvey')?>"><i class="fa fa-circle-o"></i>Encoded</a></li>
+                <li><a href="<?=base_url('asurvey/masterlist')?>"><i class="fa fa-circle-o"></i>Municipality Masterlist</a></li>
+                <li><a href="<?=base_url('asurvey')?>"><i class="fa fa-circle-o"></i>List of Respondents</a></li>
                 <li><a href="<?=base_url('asurvey/add')?>"><i class="fa fa-circle-o"></i>Add respondent</a></li>
             
           </ul>

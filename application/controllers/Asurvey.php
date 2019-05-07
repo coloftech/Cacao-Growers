@@ -519,10 +519,15 @@ class Asurvey extends BaseController
         if ($this->input->post()) {
 
             $data = $this->input->post();
-            $is_added = $this->masterlist->addTown($data);
-            echo json_encode(array('status'=>$is_added));
-            exit();
+            if($id = $this->masterlist->addTown($data)){
 
+            echo json_encode(array('status'=>true,'id'=>$id));
+        }else{
+
+            echo json_encode(array('status'=>false));
+        }
+
+            exit();
 
 
         }
@@ -532,6 +537,23 @@ class Asurvey extends BaseController
         );*/
         $this->global['pageTitle'] = 'BCIIS : Survey - Master list';        
         $this->loadViews("survey/masterlist", $this->global, NULL , NULL);
+    }
+    
+    public function masterlist_remove()
+    {
+        # code...
+        if ($this->input->post()) {
+        $this->load->model('masterlist_model','masterlist');
+
+            $data = $this->input->post();
+
+            $is_remove = $this->masterlist->removetolist($data);
+            echo json_encode(array('status'=>$is_remove));
+            exit();
+
+
+
+        }
     }
 
 

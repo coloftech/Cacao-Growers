@@ -12,7 +12,8 @@ class Masterlist_model extends CI_Model
 		# code...
 		if (is_array($data)) {
 
-		return $this->db->insert($this->masterlist,$data);
+		$this->db->insert($this->masterlist,$data);
+		return $this->db->insert_id();
 
 		}
 		    return false;
@@ -20,7 +21,7 @@ class Masterlist_model extends CI_Model
 	public function listall($year=0)
 	{
 		# code...
-		$this->db->select('town_name,town_code,no_of_farmer,year')
+		$this->db->select('masterlist_id as id, town_name,town_code,no_of_farmer,year')
 				->from($this->masterlist);
 		if ($year > 0) {
 			# code...
@@ -62,7 +63,17 @@ class Masterlist_model extends CI_Model
 		# code...
 		if (is_array($data)) {
 			# code...
-			return $this->db->insert($this->masterlist,$data);
+		$this->db->insert($this->masterlist,$data);
+		return $this->db->insert_id();
+		}
+		return false;
+	}
+	public function removetolist($data='')
+	{
+		# code...
+		if (is_array($data)) {
+			# code...
+		return $this->db->delete($this->masterlist,$data);
 		}
 		return false;
 	}

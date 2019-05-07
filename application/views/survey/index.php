@@ -22,7 +22,7 @@ if(!empty($userInfo))
 ?>
 
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="content-header" >
       <h1>
         <i class="fa fa-flag"></i> Survey
         <small>Survey / home</small>
@@ -44,16 +44,16 @@ if(!empty($userInfo))
                     <!-- form start -->
                     <div class="box-body">
                       <div class="row">
-                        <div class="col-md-12 print-none">
+                        <div class="print-none" style="background-color: #e5e5e5;margin:10px;padding: 10px;">
                           <form class="form-inline" action="/action_page.php">
-                            <label for="citytown">Address</label>
+                            <label for="citytown" style="">Address</label>
                             <select type="text" id="citytown" name="citytown" class="form-control input-sm">
                               <option>All</option>
                               <?php foreach ($cities as $key): ?>
                                 <option><?=$key?></option>
                               <?php endforeach ?>
                             </select>
-                            <label for="citytown">Year of survey</label>
+                            <label for="citytown" style="">Year of survey</label>
                             <select type="text" id="dateofsurvey" name="dateofsurvey" class="form-control input-sm">
                               <option>All</option>
                               <?php 
@@ -63,9 +63,9 @@ if(!empty($userInfo))
                                  ?>
                             </select>
                             
-                            <button type="submit" class="btn btn-sm"><i class="fa fa-search"></i></button>
+                            <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search"></i></button>
                              <div class="pull-right">
-                            <button type="button" class="btn btn-sm btn-print hidden"><i class="fa fa-print"></i></button>
+                            <button type="button" class="btn btn-default btn-sm btn-print hidden"><i class="fa fa-print"></i></button>
                           </div>
                           </form>
                          
@@ -77,7 +77,7 @@ if(!empty($userInfo))
                            <table class="table table-hover" id="tblsurvey">
                                <thead>
                                <tr>
-                                   <th></th>
+                                   <th class="print-none"></th>
                                    <th>Name</th>
                                    <th>Address</th>
                                    <th>Age</th>
@@ -92,7 +92,7 @@ if(!empty($userInfo))
                                    <?php foreach ($list_all as $key): ?>
                                        
                                    <tr style="cursor:pointer;">
-                                        <td><a href="<?=site_url('asurvey/edit/')?><?=$key->respondent_id?>" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></a></td>
+                                        <td  class="print-none"><a href="<?=site_url('asurvey/edit/')?><?=$key->respondent_id?>" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></a></td>
                                        <td><?=ucwords(strtolower($key->fname))?> <?=ucwords(strtolower($key->lname))?></td>
                                        <td><?=$key->address?></td>
                                        <td><?=$key->age?></td>

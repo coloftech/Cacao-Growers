@@ -19,7 +19,7 @@
                     		<table class="table table-bordered">
                     			<thead>
                     				<tr>
-                    				<th>Town/City</th>
+                    				<th>Municipality</th>
                     				<th>Total no of cacao farmer base on master list</th>
                     				<th>Total of cacao farmer surveyed</th>
                     				<th>Percentage</th>
@@ -30,13 +30,13 @@
                     			<tbody>
                     				<?php if (is_array($listoftown)): ?>
                     					<?php foreach ($listoftown as $key): ?>
-                    					<tr>
+                    					<tr data-id="<?=$key['id']?>">
                     				<td><?=$key['town_name']?></td>
                     				<td><?=$key['no_of_farmer']?></td>
                     				<td><?=$key['no_of_respondent']?></td>
                     				<td>0%</td>
                     				<td><?=$key['year']?></td>
-                    				<td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></a></td>
+                    				<td><a href="#" class="btn btn-default btn-xs btn-edit"><i class="fa fa-edit"></i></a> <a href="#" class="btn btn-danger btn-xs btn-remove"><i class="fa fa-remove"></i></a></td>
                     			</tr>
                     				<?php endforeach ?>
                     				<?php endif ?>
@@ -76,10 +76,11 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add data to masterlist</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+        <h3 class="modal-title">Add/Update Municipality Masterlist</h3>
+        
       </div>
       <div class="modal-body">
         <p>
@@ -103,6 +104,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="btn-add">Add</button>
+        <button type="button" class="btn btn-primary hidden" id="btn-update">Update</button>
         
       </div>
     </div>
@@ -170,25 +172,27 @@ $('#btn-add').on('click',function(){
 				is_allowed = false;
 			}
 		})
+	}else{
+		is_allowed = true;
+	}
 
 		if (is_allowed) {
 			var data = {'town_name':town_name,'town_code':town_code,'year':year,'no_of_farmer':no_of_farmer}
 			
-			var newdata = {'year':parseInt(year),'town_code':parseInt(town_code),'town_name':town_name,'no_of_farmer':parseInt(no_of_farmer),'no_of_respondent':0}
+			var newdata = {'id':"0",'year':year,'town_code':town_code,'town_name':town_name,'no_of_farmer':no_of_farmer,'no_of_respondent':0}
 			savemasterlist(data,newdata);
 		
 		}else{
 			notify(false,'The selected town and year is already exist!','Insert error!')
 		}
 		
-	}
+	
 
 })
  var savemasterlist = function(data,newdata){
  	
-
   $.ajax({
-    url: site_url+'/asurvey/masterlist',
+    url: site_url+'/masterlist',
     type: 'post',
             dataType: 'json',
             data: data, 
@@ -198,15 +202,24 @@ $('#btn-add').on('click',function(){
             success: function(response){              
               
              if(response.status == true){
+             	newdata.id = response.id.toString();
+             	if (!not_empty) {
+             	listoftown = [];
+           		listoftown.push(newdata);
+           		not_empty = true;
+
+             	}else{
 
            		listoftown.push(newdata);
-				$('tbody').append('<tr>'+
+             	}
+             	console.log(listoftown);
+				$('tbody').append('<tr data-id="'+newdata.id+'">'+
 				'<td>'+newdata.town_name+'</td>'+
-				'<td>'+newdata.no_of_farmer+'</td>'+
+				'<td>'+parseInt(newdata.no_of_farmer)+'</td>'+
 				'<td></td>'+
 				'<td></td>'+
 				'<td>'+newdata.year+'</td>'+
-				'<td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></a></td>'+
+				'<td><a href="#" class="btn btn-default btn-xs btn-edit"><i class="fa fa-edit"></i></a> <a href="#" class="btn btn-danger btn-xs btn-remove"><i class="fa fa-remove"></i></a></td>'+
 				+'</tr>');
 
 				notify('success','New data was successfully added.','Insert success!');
@@ -221,6 +234,83 @@ $('#btn-add').on('click',function(){
                 console.log(request.responseText);
             }
   })
+
+ }
+ var masterlist_id = 0;
+ $(document).on('click','.btn-edit',function(){
+ 	var id = $(this).parent().parent().data('id');
+  var data = [];
+  var found = false;
+    $.each(listoftown,function(i,d) {
+      if (d.id == id ) {
+        data = [];
+        data.push(d)
+        return false;
+      }
+    })
+  data = data[0]
+  masterlist_id = id;
+  $('#city').val(data.town_code);
+  $('#year').val(data.year);
+  $('#no_of_farmer').val(data.no_of_farmer);
+
+  $('#masterlistmodal').modal('show')
+  $('#btn-update').removeClass('hidden')
+  $('#btn-add').addClass('hidden')
+
+ })
+
+ $(document).on('click','#btn-update',function(){
+
+  var id =  masterlist_id
+  var town_name = $('#city option:selected').text();
+  var town_code = $('#city').val();
+  var year = $('#year').val();
+  var no_of_farmer = $('#no_of_farmer').val();
+
+  var data = {'town_name':town_name,'town_code':town_code,'year':year,'no_of_farmer':no_of_farmer}
+
+
+ })
+ $(document).on('click','.btn-remove',function(){
+  var id = $(this).parent().parent().data('id');
+  var data = {'masterlist_id':id}
+  removetolist(data,this)
+
+ })
+ function removetolist(data,elem) {
+ 	// body...
+
+  $.ajax({
+    url: site_url+'/removetoMasterlist',
+    type: 'post',
+            dataType: 'json',
+            data: data, 
+            beforeSend: function(){
+              console.clear();
+            },
+            success: function(response){ 
+
+             if(response.status == true){
+
+				notify('success','New data was successfully deleted.','Remove success!');
+				$(elem).parent().parent().remove();
+
+				listoftown.splice(listoftown.findIndex(function(i){
+			    return i.id === data.id;
+				}), 1);
+
+             }else{
+
+				notify('warning','No data was deleted.','Delete error!');
+             }
+
+            },
+              error: function (request, status, error) {
+                console.log(request.responseText);
+            }
+  })
+
 
  }
 </script>
