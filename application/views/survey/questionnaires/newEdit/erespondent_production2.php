@@ -5,10 +5,10 @@
                 <div class="choices">
                     <div class="width-full">
                         <div class="width-half">
-                            <input type="text" class="form-control" name="coordinates_lat" placeholder="Lat">
+                            <input type="text" class="form-control" name="coordinates_lat" placeholder="Lat"  value="<?=isset($productions[0]->latitude) ? $productions[0]->latitude: '';?>">
                         </div>
                         <div class="width-half">
-                            <input type="text" class="form-control" name="coordinates_long" placeholder="Long">
+                            <input type="text" class="form-control" name="coordinates_long" placeholder="Long"  value="<?=isset($productions[0]->longitude) ? $productions[0]->longitude: '';?>">
                         </div>
                 
                     </div>
@@ -256,6 +256,22 @@
                     <input type="radio" name="practicepruning" id="prun1" value="Yes" >
                     <label for="prun1">Yes</label>
                     </div>
+
+                  <div class="radio-child hidden" id="pruningyes">
+                     
+                    <div class="xradio col-md-12">
+                    <div class="xradio-info">                      
+                    <input type="checkbox" name="practicepruning_yes[]" id="prunyes1" value="DA" >
+                    <label for="prunyes1">DA</label>
+                    </div>
+                  </div> 
+                  <div class="xradio col-md-12">
+                    <div class="xradio-info">                      
+                    <input type="checkbox" name="practicepruning_yes[]" id="prunyes2" value="Private">
+                    <label for="prunyes2">Private</label>
+                    </div>
+                  </div> 
+                  </div>
                   </div> 
                   <div class="xradio col-md-4">
                     <div class="xradio-success">                      
@@ -264,12 +280,11 @@
                     </div>
                   </div> 
 
-                  <div class="col-md-12 others-input">
-                      <small>If yes, specify here</small><input type="text" class="form-control" name="practicepruning_yes"  value="<?=isset($productions[0]->practice_pruning_yes) ? $productions[0]->practice_pruning_yes: '';?>">
-                  </div>
                 </div>
 
               </div>
+
+
 
             <div class="form-group width-full">
 
@@ -344,6 +359,21 @@
 
 
 
+  $('input[name="practicepruning"]').on('click',function () {
+    // body...
+
+    var val = $(this).val().trim();
+    if(val=='Yes'){
+    $(this).parent().parent().find('.radio-child').removeClass('hidden')
+    }else{
+
+    $(this).parent().parent().parent().find('.radio-child').addClass('hidden')
+
+          $('#prunyes1').removeAttr('checked')
+          $('#prunyes2').removeAttr('checked')
+    }
+  })
+
   $(function(){
 
     var vproductions = JSON.parse($('#productions').html());
@@ -409,6 +439,7 @@
 
     var freq_i = 0;
     var freq = false;
+    var ispruning = false;
     $.each(radio,function(){
 
       var val = $(this).val();
@@ -426,13 +457,30 @@
           $('#application7').prop('checked',true);
         }
       }
+
       if(data.practice_pruning == 0){
         data.practice_pruning ='No';
       }
 
+
       if(data.practice_pruning == val &&  'practicepruning' == parent ){
 
         $(this).prop('checked',true);
+      }
+      if(data.practice_pruning == 'Yes' && ispruning == false){
+        $('#pruningyes').removeClass('hidden')
+        var pruning = data.practice_pruning_yes.split(',')
+
+        ispruning = true;
+
+        if (pruning.inArray('DA')) {
+
+          $('#prunyes1').prop('checked',true)
+        }
+        if (pruning.inArray('Private')) {
+
+          $('#prunyes2').prop('checked',true)
+        }
       }
 
       if(data.da_training == 0){

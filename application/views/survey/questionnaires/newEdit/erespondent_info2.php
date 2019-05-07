@@ -247,7 +247,7 @@
 
                             <ul class="trainingQ table-bordered">
                             <li><label>Title of Training/Seminar</label> <input type="text" class="form-control" name="trainingtitle[]" value="<?=$key->title_of_trainig?>"></li>
-                            <li><label>Date Conducted</label> <input type="date" class="form-control maxdate"  value="<?=$key->date_conducted?>" max="<?=date('Y-m-d')?>" name="trainingdated[]"></li>
+                            <li><label>Date Conducted</label> <input type="text" class="form-control maxdate"  value="<?=$key->date_conducted?>" placeholder="Year-month-day (2019-1-31) Reminders: if year only just type the year" name="trainingdated[]"></li>
                             <li><label>Venue</label> <input type="text" class="form-control" name="trainingvenue[]"  value="<?=$key->venue?>"></li>
                             <li><label>Sponsoring Agency</label> <input type="text" class="form-control" name="trainingsponsor[]"  value="<?=$key->sponsoring_agency?>"></li>
                             </ul>
@@ -257,7 +257,7 @@
 
                             <ul class="trainingQ table-bordered">
                             <li><label>Title of Training/Seminar</label> <input type="text" class="form-control" name="trainingtitle[]"></li>
-                            <li><label>Date Conducted</label> <input type="date" class="form-control maxdate" value="<?=date('Y-m-d')?>" max="<?=date('Y-m-d')?>" name="trainingdated[]"></li>
+                            <li><label>Date Conducted</label> <input type="text" class="form-control"  placeholder="Year-month-day (2019-1-31) Reminders: if year only just type the year" name="trainingdated[]"></li>
                             <li><label>Venue</label> <input type="text" class="form-control" name="trainingvenue[]"></li>
                             <li><label>Sponsoring Agency</label> <input type="text" class="form-control" name="trainingsponsor[]"></li>
                             </ul>

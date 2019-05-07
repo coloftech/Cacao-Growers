@@ -60,3 +60,14 @@
 .new-section{
   color:#000000;
 }
+
+.new-section h3 {
+  margin-bottom:30px;
+  font-weight:800;
+}
+
+.new-section h4 {
+  margin-top:20px;
+  margin-bottom:20px;
+  font-weight:600;
+}

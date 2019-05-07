@@ -89,28 +89,28 @@ if(!empty($userInfo))
                           <div id="home" class="tab-pane fade in active">
                             <h3>PERSONAL INFORMATION</h3>
                             <input type="hidden" value="<?=$token?>" id="token" name="token">
-                            <p><?php include_once 'respondent_info2.php'; ?></p>
+                            <p><?php include_once 'erespondent_info2.php'; ?></p>
                           </div>
                           <div id="menu1" class="tab-pane fade">
                             <h3>FARM PROFILE</h3>
-                            <p><?php include_once 'respondent_farmprofile2.php'; ?></p>
+                            <p><?php include_once 'erespondent_farmprofile2.php'; ?></p>
                           </div>
 
                           <div id="menu2" class="tab-pane fade">
                             <h3>PEST &amp; DISEASES</h3>
-                            <p><?php include_once 'respondent_pest2.php'; ?></p>
+                            <p><?php include_once 'erespondent_pest2.php'; ?></p>
                           </div>
                           <div id="menu3" class="tab-pane fade">
                             <h3>PRODUCTION MANAGEMENT</h3>
-                            <p><?php include_once 'respondent_production2.php'; ?></p>
+                            <p><?php include_once 'erespondent_production2.php'; ?></p>
                           </div>
                           <div id="menu4" class="tab-pane fade">
                             <h3>POST HARVEST</h3>
-                            <p><?php include_once 'respondent_harvest2.php'; ?></p>
+                            <p><?php include_once 'erespondent_harvest2.php'; ?></p>
                           </div>
                           <div id="menu5" class="tab-pane fade">
                             <h3>MARKETING</h3>
-                            <p><?php include_once 'respondent_marketing2.php'; ?></p>
+                            <p><?php include_once 'erespondent_marketing2.php'; ?></p>
                           </div>
                         </div>
                     </div>
