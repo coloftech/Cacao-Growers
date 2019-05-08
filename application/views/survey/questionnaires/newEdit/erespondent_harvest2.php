@@ -282,21 +282,21 @@ $(function(){
     }
   })
   var checkboxHarvest = function (data) {
-    // body...
-    //console.log(data.pod_processing.split(','))
-    var checkbox = $('#frmharvest input:checkbox[name="pod_processing[]"]')
-     $.each(checkbox,function(){
-        var val = $(this).val()
 
-          if(data.pod_processing.split(',').inArray(val)){
-            $(this).prop('checked',true);
+    if (data.pod_processing){
 
-            $(this).parent().parent().find('.radio-child').removeClass('hidden')
-            pod_processing_rd(val,this,data);
-          }
-     });
+      var checkbox = $('#frmharvest input:checkbox[name="pod_processing[]"]')
+       $.each(checkbox,function(){
+          var val = $(this).val()
 
+            if(data.pod_processing.split(',').inArray(val)){
+              $(this).prop('checked',true);
 
+              $(this).parent().parent().find('.radio-child').removeClass('hidden')
+              pod_processing_rd(val,this,data);
+            }
+       });
+    }
 
   }
   var pod_processing_rd = function(item,elem,data){
