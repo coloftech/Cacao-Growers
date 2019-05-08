@@ -91,7 +91,9 @@ $route['createPasswordUser'] = "login/createPasswordUser";
 
 
 $route['masterlist'] = "asurvey/masterlist";
-$route['removetoMasterlist'] = "asurvey/masterlist_remove";
+$route['removetoMasterlist'] = "asurvey/removetoMasterlist";
+$route['updateMasterlist'] = "asurvey/updateMasterlist";
+$route['updateMasterlist/(:num)'] = "asurvey/updateMasterlist/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

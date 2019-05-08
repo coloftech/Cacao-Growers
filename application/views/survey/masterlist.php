@@ -1,3 +1,19 @@
+  <style type="text/css">
+#overlay {
+  background: blue;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: .2;
+  z-index: 9999999;
+}
+
+  </style> 
+   <div id="overlay" class="hidden"></div>
+
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -212,7 +228,6 @@ $('#btn-add').on('click',function(){
 
            		listoftown.push(newdata);
              	}
-             	console.log(listoftown);
 				$('tbody').append('<tr data-id="'+newdata.id+'">'+
 				'<td>'+newdata.town_name+'</td>'+
 				'<td>'+parseInt(newdata.no_of_farmer)+'</td>'+
@@ -236,6 +251,49 @@ $('#btn-add').on('click',function(){
   })
 
  }
+
+ var updatemasterlist = function(data,id){
+
+  $.ajax({
+    url: site_url+'/updateMasterlist/'+id,
+    type: 'post',
+            dataType: 'json',
+            data: data, 
+            beforeSend: function(){
+              console.clear();
+              $('#overlay').removeClass('hidden');
+            },
+            success: function(response){              
+              if (response.status == true) {
+                notify('success','Municipality data updated successfully!');
+
+                setTimeout(function(){
+
+                notify('warning','Page will reload in 1s');
+
+                },1000)
+
+                setTimeout(function(){
+
+                  window.location.reload();
+
+                },2000)
+              }
+             console.log(response)
+
+            },
+              error: function (request, status, error) {
+                console.log(request.responseText);
+            },
+            complete: function(){
+
+              $('#overlay').addClass('hidden');
+              $('#masterlistmodal').modal('hide')
+            }
+  })
+
+ }
+ 
  var masterlist_id = 0;
  $(document).on('click','.btn-edit',function(){
  	var id = $(this).parent().parent().data('id');
@@ -269,7 +327,8 @@ $('#btn-add').on('click',function(){
   var no_of_farmer = $('#no_of_farmer').val();
 
   var data = {'town_name':town_name,'town_code':town_code,'year':year,'no_of_farmer':no_of_farmer}
-
+  
+  updatemasterlist(data,id);
 
  })
  $(document).on('click','.btn-remove',function(){

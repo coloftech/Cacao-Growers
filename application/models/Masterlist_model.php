@@ -78,6 +78,17 @@ class Masterlist_model extends CI_Model
 		return false;
 	}
 	
+	public function updatelist($data,$id=0)
+	{
+		# code...
+		if (is_array($data)) {
+			# code...
+		$this->db->where('masterlist_id',$id);
+		return $this->db->update($this->masterlist,$data);
+		}
+		return false;
+	}
+	
 
 
 

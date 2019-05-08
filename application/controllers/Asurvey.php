@@ -539,7 +539,7 @@ class Asurvey extends BaseController
         $this->loadViews("survey/masterlist", $this->global, NULL , NULL);
     }
     
-    public function masterlist_remove()
+    public function removetoMasterlist()
     {
         # code...
         if ($this->input->post()) {
@@ -549,6 +549,26 @@ class Asurvey extends BaseController
 
             $is_remove = $this->masterlist->removetolist($data);
             echo json_encode(array('status'=>$is_remove));
+            exit();
+
+
+
+        }
+    }
+
+    
+    public function updateMasterlist($id=0)
+    {
+        # code...
+        if ($this->input->post()) {
+        $this->load->model('masterlist_model','masterlist');
+
+            $data = $this->input->post();
+            //echo json_encode($data);
+            //*/
+            $is_updated = $this->masterlist->updatelist($data,$id);
+            echo json_encode(array('status'=>$is_updated));
+            //*/
             exit();
 
 
