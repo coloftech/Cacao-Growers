@@ -25,6 +25,7 @@ class Mapping extends BaseController
         $this->load->library('CI_messaging','message'); 
         $this->userId = $this->session->userdata('userId');
         $this->load->model('Mapping_model','mapping');
+        $this->load->model('settings_model','settings');
     }
 
 	public function index()
@@ -45,6 +46,7 @@ class Mapping extends BaseController
         $this->global['mapping'] = true;
         $this->global['address'] = json_encode($address);
         $this->global['pageTitle'] = 'Mapping';
+        $this->global['googleApi']= $this->settings->getSetting('googleapi');
         
         $this->loadViews("map/mapping", $this->global, NULL , NULL);
 

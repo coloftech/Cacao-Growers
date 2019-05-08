@@ -1,3 +1,11 @@
+.sidebar-mini .sidebar-menu a > span:not(.pull-right),
+.sidebar-mini .treeview-menu{
+  width: 195px !important;
+}
+.content{
+  padding-left:0;
+  padding-right:0;
+}
 .visitors-panel{
 
   padding: 0;

@@ -22,7 +22,7 @@ if(!empty($userInfo))
 ?>
 
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="content-header" >
       <h1>
         <i class="fa fa-flag"></i> Survey
         <small>Survey / home</small>
@@ -30,10 +30,91 @@ if(!empty($userInfo))
     </section>
     
     <section class="content">
-    
+
+            
+            <div class="col-md-12">
+              <!-- general form elements -->
+                
+                
+                
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">Survey List</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <div class="box-body">
+                      <div class="row">
+                        <div class="print-none" style="background-color: #e5e5e5;margin:10px;padding: 10px;">
+                          <form class="form-inline" action="/action_page.php">
+                            <label for="citytown" style="">Address</label>
+                            <select type="text" id="citytown" name="citytown" class="form-control input-sm">
+                              <option>All</option>
+                              <?php foreach ($cities as $key): ?>
+                                <option><?=$key?></option>
+                              <?php endforeach ?>
+                            </select>
+                            <label for="citytown" style="">Year of survey</label>
+                            <select type="text" id="dateofsurvey" name="dateofsurvey" class="form-control input-sm">
+                              <option>All</option>
+                              <?php 
+                              for ($i = 2018; $i <= date('Y'); $i++) {
+                                    echo "<option>$i</option>";
+                                }
+                                 ?>
+                            </select>
+                            
+                            <button type="submit" class="btn btn-default btn-sm"><i class="fa fa-search"></i></button>
+                             <div class="pull-right">
+                            <button type="button" class="btn btn-default btn-sm btn-print hidden"><i class="fa fa-print"></i></button>
+                          </div>
+                          </form>
+                         
+                        </div>
+                        <br/>
+                        <br/>
+                      </div>
+                       <div class="table-responsive print-yes">
+                           <table class="table table-hover" id="tblsurvey">
+                               <thead>
+                               <tr>
+                                   <th class="print-none"></th>
+                                   <th>Name</th>
+                                   <th>Address</th>
+                                   <th>Age</th>
+                                   <th>Civil status</th>
+                                   <th>Family size</th>
+                                   <th>Annual income</th>
+                                   <th>Education</th>
+                                   <th>Date of survey</th>
+                               </tr></thead>
+                               <tbody>
+                               <?php if (is_array($list_all)): ?>
+                                   <?php foreach ($list_all as $key): ?>
+                                       
+                                   <tr style="cursor:pointer;">
+                                        <td  class="print-none"><a href="<?=site_url('asurvey/edit/')?><?=$key->respondent_id?>" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></a></td>
+                                       <td><?=ucwords(strtolower($key->fname))?> <?=ucwords(strtolower($key->lname))?></td>
+                                       <td><?=$key->address?></td>
+                                       <td><?=$key->age?></td>
+                                       <td><?=$key->civilstatus?></td>
+                                       <td><?=$key->familysize?></td>
+                                       <td><?=$key->annualincome?></td>
+                                       <td><?=$key->education?></td>
+                                       <td><?=date('Y-m-d',strtotime($key->date_of_survey))?></td>
+                                   </tr>
+                                   <?php endforeach ?>
+                               <?php endif ?>
+                               </tbody>
+                           </table>
+                       </div>
+                    </div>
+                    
+                </div>
+            </div>
+                
         <div class="row">
             <!-- left column -->
-            <div class="col-md-3 print-none">
+            <div class="col-md-3 print-none hidden">
 
                 <div class="box box-primary">
                     <div class="box-header">
@@ -53,87 +134,6 @@ if(!empty($userInfo))
                     
                 </div>
             </div>
-            
-            <div class="col-md-9">
-              <!-- general form elements -->
-                
-                
-                
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <h3 class="box-title">Survey List</h3>
-                    </div><!-- /.box-header -->
-                    <!-- form start -->
-                    <div class="box-body">
-                      <div class="row">
-                        <div class="col-md-12 print-none">
-                          <form class="form-inline" action="/action_page.php">
-                            <label for="citytown">Address</label>
-                            <select type="text" id="citytown" name="citytown" class="form-control input-sm">
-                              <option>All</option>
-                              <?php foreach ($cities as $key): ?>
-                                <option><?=$key?></option>
-                              <?php endforeach ?>
-                            </select>
-                            <label for="citytown">Year of survey</label>
-                            <select type="text" id="dateofsurvey" name="dateofsurvey" class="form-control input-sm">
-                              <option>All</option>
-                              <?php 
-                              for ($i = 2018; $i <= date('Y'); $i++) {
-                                    echo "<option>$i</option>";
-                                }
-                                 ?>
-                            </select>
-                            
-                            <button type="submit" class="btn btn-sm"><i class="fa fa-search"></i></button>
-                             <div class="pull-right">
-                            <button type="button" class="btn btn-sm btn-print hidden"><i class="fa fa-print"></i></button>
-                          </div>
-                          </form>
-                         
-                        </div>
-                        <br/>
-                        <br/>
-                      </div>
-                       <div class="table-responsive print-yes">
-                           <table class="table table-hover" id="tblsurvey">
-                               <thead>
-                               <tr>
-                                   <th></th>
-                                   <th>Name</th>
-                                   <th>Address</th>
-                                   <th>Age</th>
-                                   <th>Civil status</th>
-                                   <th>Family size</th>
-                                   <th>Annual income</th>
-                                   <th>Education</th>
-                                   <th>Date of survey</th>
-                               </tr></thead>
-                               <tbody>
-                               <?php if (is_array($list_all)): ?>
-                                   <?php foreach ($list_all as $key): ?>
-                                       
-                                   <tr style="cursor:pointer;">
-                                        <td><a href="<?=site_url('asurvey/edit/')?><?=$key->respondent_id?>" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></a></td>
-                                       <td><?=ucwords(strtolower($key->fname))?> <?=ucwords(strtolower($key->lname))?></td>
-                                       <td><?=$key->address?></td>
-                                       <td><?=$key->age?></td>
-                                       <td><?=$key->civilstatus?></td>
-                                       <td><?=$key->familysize?></td>
-                                       <td><?=$key->annualincome?></td>
-                                       <td><?=$key->education?></td>
-                                       <td><?=date('Y-m-d',strtotime($key->date_of_survey))?></td>
-                                   </tr>
-                                   <?php endforeach ?>
-                               <?php endif ?>
-                               </tbody>
-                           </table>
-                       </div>
-                    </div>
-                    
-                </div>
-            </div>
-            
         </div>    
     </section>
 

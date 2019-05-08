@@ -32,6 +32,21 @@ class Settings_model extends CI_Model
 		}
 			return false;
 	}
+
+	public function getSetting($name='')
+	{
+		# code...
+		$query = $this->db
+			->select('settings_value')
+			->from($this->table)
+			->where('settings_name',$name)
+			->get();
+		if($result = $query->result())
+		{
+			return $result[0]->settings_value;
+		}
+			return false;
+	}
 	public function getbysection($setting='',$is_active=false)
 	{
 		# code...

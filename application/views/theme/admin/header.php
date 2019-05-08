@@ -56,7 +56,7 @@
 
   <link href="<?php echo base_url(); ?>assets/plugins/jquery-cropper/dist/cropper.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/plugins/alertifyjs/css/alertify.min.css">
-  <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/admin.style-v1.12.css')?>">
+  <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/admin.style-v1.14.css')?>">
 
     <link rel="stylesheet" type="text/css"  media="print"  href="<?php echo base_url(); ?>assets/css/print.css">
 
@@ -78,9 +78,11 @@
  alertify.set('notifier','position', 'top-right');
  alertify.defaults.glossary.title = 'NOTIFICATION';
 
-var notify = function (e,msg) {
+var notify = function (e,msg,title) {
   // body...
-
+if (title) {
+ alertify.defaults.glossary.title = title;
+}
 switch (e) {
    case 'success':
       alertify.success(msg);
@@ -104,7 +106,7 @@ switch (e) {
   <header class="main-header">
     <!-- Logo -->
             <!-- Logo -->
-        <a href="<?php echo base_url(); ?>" class="logo">
+        <a href="<?php echo site_url('dashboard'); ?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>BC</b>IIS</span>
           <!-- logo for regular state and mobile devices -->
@@ -405,8 +407,9 @@ switch (e) {
           </a>
           <ul class="treeview-menu">
             
-                <li><a href="<?=base_url('asurvey')?>"><i class="fa fa-circle-o"></i>List all</a></li>
-                <li><a href="<?=base_url('asurvey/add')?>"><i class="fa fa-circle-o"></i>Add/Edit</a></li>
+                <li><a href="<?=base_url('asurvey/masterlist')?>"><i class="fa fa-circle-o"></i>Municipality Masterlist</a></li>
+                <li><a href="<?=base_url('asurvey')?>"><i class="fa fa-circle-o"></i>List of Respondents</a></li>
+                <li><a href="<?=base_url('asurvey/add')?>"><i class="fa fa-circle-o"></i>Add respondent</a></li>
             
           </ul>
         </li>
@@ -486,7 +489,7 @@ switch (e) {
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=base_url('assets')?>/pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
+            <li><a href="<?=base_url('reports/graphical')?>"><i class="fa fa-circle-o"></i> ChartJS</a></li>
             <li><a href="<?=base_url('assets')?>/pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
             <li><a href="<?=base_url('assets')?>/pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
             <li><a href="<?=base_url('assets')?>/pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>

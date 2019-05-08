@@ -512,6 +512,71 @@ class Asurvey extends BaseController
     }
 
 
+    public function masterlist($value='')
+    {
+        $this->load->model('masterlist_model','masterlist');
+
+        if ($this->input->post()) {
+
+            $data = $this->input->post();
+            if($id = $this->masterlist->addTown($data)){
+
+            echo json_encode(array('status'=>true,'id'=>$id));
+        }else{
+
+            echo json_encode(array('status'=>false));
+        }
+
+            exit();
+
+
+        }
+        $listoftown = $this->masterlist->listall(0);
+        $this->global['listoftown'] = $listoftown; /* array(
+            array('year'=>2019,'town_code'=>817,'town_name'=>'Batuan','no_of_farmer'=>20)
+        );*/
+        $this->global['pageTitle'] = 'BCIIS : Survey - Master list';        
+        $this->loadViews("survey/masterlist", $this->global, NULL , NULL);
+    }
+    
+    public function removetoMasterlist()
+    {
+        # code...
+        if ($this->input->post()) {
+        $this->load->model('masterlist_model','masterlist');
+
+            $data = $this->input->post();
+
+            $is_remove = $this->masterlist->removetolist($data);
+            echo json_encode(array('status'=>$is_remove));
+            exit();
+
+
+
+        }
+    }
+
+    
+    public function updateMasterlist($id=0)
+    {
+        # code...
+        if ($this->input->post()) {
+        $this->load->model('masterlist_model','masterlist');
+
+            $data = $this->input->post();
+            //echo json_encode($data);
+            //*/
+            $is_updated = $this->masterlist->updatelist($data,$id);
+            echo json_encode(array('status'=>$is_updated));
+            //*/
+            exit();
+
+
+
+        }
+    }
+
+
 
 
 }

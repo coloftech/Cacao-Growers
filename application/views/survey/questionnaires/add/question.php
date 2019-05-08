@@ -43,54 +43,6 @@ if(!empty($userInfo))
     <section class="content">
     
         <div class="row">
-            <!-- left column -->
-            <div class="col-md-3 print-none">
-
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <h3 class="box-title">Survey options</h3>
-                    </div><!-- /.box-header -->
-                    <!-- form start -->
-                    <div class="box-body">
-                            <div class="list-group">
-                              <a href="<?=site_url('asurvey')?>" class="list-group-item list-group-item-action active">
-                                List
-                              </a>
-                              <a href="<?=site_url('asurvey/add')?>" class="list-group-item list-group-item-action">Add</a>
-                              <a href="<?=site_url('asurvey/edit')?>" class="list-group-item list-group-item-action">Edit</a>
-                              
-                            </div>
-                    </div>
-                    
-                </div>
-
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <h4 class="box-title">Reminders</h4>
-                    </div><!-- /.box-header -->
-                    <!-- form start -->
-                    <div class="box-body">
-
-                   <div class="xradio col-md-12">
-                    <small>You may select more item or leave unchecked</small>
-                    <div class="xradio-primary">                      
-                    <input type="checkbox" name="checkbox" id="checkbox" checked="" class="disabled" disabled="true">
-                    <label for="checkbox" class="disabled" disabled="true">Checkbox</label>
-                    </div>
-                  </div> 
-
-                   <div class="xradio col-md-12">
-                    <small>You can select one item only</small>
-                    <div class="xradio-success">                      
-                    <input type="radio" name="radio" id="radio" checked="">
-                    <label for="radio">Radio</label>
-                    </div>
-                  </div> 
-
-                    </div>
-                    
-                </div>
-            </div>
 
             <div class="col-md-9 " id="survey-area">
               <!-- general form elements -->
@@ -140,6 +92,55 @@ if(!empty($userInfo))
                             
                           </div>
                         </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- left column -->
+            <div class="col-md-3 print-none">
+
+                <div class="box box-primary hidden">
+                    <div class="box-header">
+                        <h3 class="box-title">Survey options</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <div class="box-body">
+                            <div class="list-group">
+                              <a href="<?=site_url('asurvey')?>" class="list-group-item list-group-item-action active">
+                                List
+                              </a>
+                              <a href="<?=site_url('asurvey/add')?>" class="list-group-item list-group-item-action">Add</a>
+                              <a href="<?=site_url('asurvey/edit')?>" class="list-group-item list-group-item-action">Edit</a>
+                              
+                            </div>
+                    </div>
+                    
+                </div>
+
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h4 class="box-title">Reminders</h4>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <div class="box-body">
+
+                   <div class="xradio col-md-12">
+                    <small>You may select more item or leave unchecked</small>
+                    <div class="xradio-primary">                      
+                    <input type="checkbox" name="checkbox" id="checkbox" checked="" class="disabled" disabled="true">
+                    <label for="checkbox" class="disabled" disabled="true">Checkbox</label>
+                    </div>
+                  </div> 
+
+                   <div class="xradio col-md-12">
+                    <small>You can select one item only</small>
+                    <div class="xradio-success">                      
+                    <input type="radio" name="radio" id="radio" checked="">
+                    <label for="radio">Radio</label>
+                    </div>
+                  </div> 
+
                     </div>
                     
                 </div>
