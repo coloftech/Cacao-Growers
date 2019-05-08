@@ -208,6 +208,15 @@ class Reports extends BaseController
         exit();
 	}
 
+    public function graphical($value='')
+    {
+        # code...
+
+        $this->global['pageTitle'] = 'Reports - graphical';              
+        $this->loadViews("reports/graphical/index", $this->global, NULL , NULL);
+
+    }
+
 
 
 ///

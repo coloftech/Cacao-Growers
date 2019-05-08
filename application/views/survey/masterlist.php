@@ -10,6 +10,7 @@
   z-index: 9999999;
 }
 
+
   </style> 
    <div id="overlay" class="hidden"></div>
 
@@ -36,11 +37,12 @@
                     			<thead>
                     				<tr>
                     				<th>Municipality</th>
-                    				<th>Total no of cacao farmer base on master list</th>
-                    				<th>Total of cacao farmer surveyed</th>
+                    				<th>Expected total no of cacao farmer</th>
+                            <th>No of actual cacao farmer surveyed</th>
+                            <th>Encoded survey questionaire</th>
                     				<th>Percentage</th>
                     				<th>Year</th>
-                    				<th></th>
+                    				<th width="70px"></th>
                     			</tr>
                     			</thead>
                     			<tbody>
@@ -48,7 +50,8 @@
                     					<?php foreach ($listoftown as $key): ?>
                     					<tr data-id="<?=$key['id']?>">
                     				<td><?=$key['town_name']?></td>
-                    				<td><?=$key['no_of_farmer']?></td>
+                            <td><?=$key['no_of_farmer']?></td>
+                            <td>0</td>
                     				<td><?=$key['no_of_respondent']?></td>
                     				<td>0%</td>
                     				<td><?=$key['year']?></td>
@@ -232,7 +235,8 @@ $('#btn-add').on('click',function(){
 				'<td>'+newdata.town_name+'</td>'+
 				'<td>'+parseInt(newdata.no_of_farmer)+'</td>'+
 				'<td></td>'+
-				'<td></td>'+
+        '<td></td>'+
+        '<td></td>'+
 				'<td>'+newdata.year+'</td>'+
 				'<td><a href="#" class="btn btn-default btn-xs btn-edit"><i class="fa fa-edit"></i></a> <a href="#" class="btn btn-danger btn-xs btn-remove"><i class="fa fa-remove"></i></a></td>'+
 				+'</tr>');
