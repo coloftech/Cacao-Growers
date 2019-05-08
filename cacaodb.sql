@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2019 at 04:44 AM
+-- Generation Time: May 08, 2019 at 11:08 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.0.27
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `test`
+-- Database: `cacaov3`
 --
 
 -- --------------------------------------------------------
@@ -186,7 +186,7 @@ CREATE TABLE `respondents` (
 CREATE TABLE `respondents_affiliation` (
   `respondent_id` int(11) NOT NULL,
   `title_of_trainig` varchar(100) DEFAULT NULL,
-  `date_conducted` date DEFAULT NULL,
+  `date_conducted` varchar(20) DEFAULT NULL,
   `venue` varchar(10) DEFAULT NULL,
   `sponsoring_agency` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -289,8 +289,15 @@ CREATE TABLE `respondents_post_harvest` (
   `pod_per_variety` varchar(25) DEFAULT NULL,
   `kg_produced_per_variety` varchar(25) DEFAULT NULL,
   `total_bean_production` varchar(25) NOT NULL,
-  `cacao_pod_sorting` varchar(50) NOT NULL,
-  `pod_processing` varchar(50) NOT NULL
+  `cacao_pod_sorting` varchar(50) DEFAULT NULL,
+  `pod_processing` varchar(150) DEFAULT NULL,
+  `pod_breaking` varchar(10) DEFAULT NULL,
+  `bean_processing` varchar(10) DEFAULT NULL,
+  `bean_sorting` varchar(10) DEFAULT NULL,
+  `bean_roasting` varchar(10) DEFAULT NULL,
+  `winnowing` varchar(10) DEFAULT NULL,
+  `grinding` varchar(10) DEFAULT NULL,
+  `cacao_pod_processing` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -323,11 +330,11 @@ CREATE TABLE `respondents_production_management` (
   `if_organic` varchar(100) DEFAULT NULL,
   `if_inorganic` varchar(100) DEFAULT NULL,
   `fertilizer_application_frequency` varchar(100) DEFAULT NULL,
-  `practice_pruning` int(3) NOT NULL,
+  `practice_pruning` varchar(3) NOT NULL,
   `practice_pruning_yes` varchar(100) DEFAULT NULL,
-  `da_training` int(3) NOT NULL,
+  `da_training` varchar(3) NOT NULL,
   `da_training_yes` varchar(100) DEFAULT NULL,
-  `da_share_technology` int(3) NOT NULL,
+  `da_share_technology` varchar(3) NOT NULL,
   `latitude` varchar(50) NOT NULL,
   `longitude` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -353,15 +360,32 @@ CREATE TABLE `site_settings` (
 
 INSERT INTO `site_settings` (`settings_id`, `settings_name`, `settings_value`, `settings_parent`, `is_active`, `position`) VALUES
 (1, 'section1', '  <section id=\"main-slider\" class=\"no-margin\">\n    <div class=\"carousel slide\">\n      <div class=\"carousel-inner\">\n        <div class=\"item active\" style=\"background-image: url(\n../public/images/cacao.jpg)\">\n          <div class=\"container\">\n            <div class=\"row slide-margin\">\n              <div class=\"col-sm-6\">\n                <div class=\"carousel-content\">\n                  <h3 class=\"animation animated-item-1\"><span>Welcome to</span> THE CACAO GROWERS</h3>\n                  <p class=\"animation animated-item-2\">The Bohol Cacao Integrated Information System Database sponsored by DOST 7.</p>\n                  <a class=\"btn-slide animation animated-item-3\" href=\"#\">Read More</a>\n                </div>\n              </div>\n\n              <div class=\"col-sm-6 hidden-xs animation animated-item-4\">\n                <div class=\"slider-img\">\n                  <img src=\"../assets/themes/Company/images/slider/img3.png\" class=\"img-responsive hidden\">\n                </div>\n              </div>\n\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </section>\n', 'home', 1, 1),
-(3, 'section2', '\r\n  <div class=\"feature\">\r\n    <div class=\"container\">\r\n      <div class=\"text-center\">\r\n<div class=\"col-md-4\">\r\n<div class=\"hi-icon-wrap hi-icon-effect wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"300ms\"><img src=\"../public/images/c-cacao.png\" />\r\n<h2>Criollo</h2>\r\n<p>Criollo a superior quality characterized by having generally elongated and highly ridged pods.</p>\r\n</div>\r\n</div>\r\n<div class=\"col-md-4\">\r\n<div class=\"hi-icon-wrap hi-icon-effect wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"600ms\"><img src=\"../public/images/f-cacao.png\" />\r\n<h2>Forastero</h2>\r\n<p>Forastero is a high yielding cacao where its pods are thick-walled, hard and round which turn yellow when ripe.</p>\r\n</div>\r\n</div>\r\n<div class=\"col-md-4\">\r\n<div class=\"hi-icon-wrap hi-icon-effect wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"900ms\"><img src=\"../public/images/t-cacao.png\" />\r\n<h2>Trinitario</h2>\r\n<p>The richest source of genetic variations for the improvement of cacao by hybridization..</p>\r\n</div>\r\n</div>\r\n\r\n</div>\r\n</div>\r\n</div>', 'home', 1, 2),
+(3, 'section2', '\n  <div class=\"feature\">\n    <div class=\"container\">\n      <div class=\"text-center\">\n<div class=\"col-md-4\">\n<div class=\"hi-icon-wrap hi-icon-effect wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"300ms\"><img src=\"../public/images/c-cacao.png\">\n<h2>Criollo</h2>\n<p>Criollo a superior quality characterized by having generally elongated and highly ridged pods.</p>\n</div>\n</div>\n<div class=\"col-md-4\">\n<div class=\"hi-icon-wrap hi-icon-effect wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"600ms\"><img src=\"../public/images/f-cacao.png\">\n<h2>Forastero</h2>\n<p>Forastero is a high yielding cacao where its pods are thick-walled, hard and round which turn yellow when ripe.</p>\n</div>\n</div>\n<div class=\"col-md-4\">\n<div class=\"hi-icon-wrap hi-icon-effect wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"900ms\"><img src=\"../public/images/t-cacao.png\">\n<h2>Trinitario</h2>\n<p>The richest source of genetic variations for the improvement of cacao by hybridization..</p>\n</div>\n</div>\n\n</div>\n</div>\n</div>', 'home', 1, 2),
 (4, 'section3', '\r\n  <div class=\"about\">\r\n    <div class=\"container\">\r\n\r\n<div class=\"col-md-6 wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"300ms\">\r\n        <h2>WHY CACAO?</h2>\r\n        <img src=\"https://chocolateclass.files.wordpress.com/2017/03/3_main_types_of_cocoa-01_large.jpg\" class=\"img-responsive\" />\r\n        <p>Cacao –Theobroma cacao L. - A rainforest tree now grown and domesticated in lower tropical humid climate near the equator in Central and South America, Africa, India, Indonesia, Sri Lanka, Malaysia and Philippines that need good fertile soils, sunlight and wind protection.\r\n        </p>\r\n      </div>\r\n\r\n      <div class=\"col-md-6 wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"600ms\">\r\n        <h2>Template built with Twitter Bootstrap</h2>\r\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque libero,\r\n          pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque\r\n          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque\r\n            libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque\r\n          </p>\r\n          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque\r\n            libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque </p>\r\n      </div>\r\n\r\n\r\n</div>\r\n</div>', 'home', 1, 3),
 (5, 'section4', 'This is news area not editable', 'home', 1, 4),
-(6, 'section5', '\r\n  <section id=\"partner\">\r\n    <div class=\"container\"> <div class=\"center wow fadeInDown\">\r\n        <h2>Our Partners</h2>\r\n        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>\r\n      </div>\r\n\r\n      <div class=\"partners\">\r\n        <ul>\r\n          <li> <a href=\"#\"><img class=\"img-responsive wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"300ms\" src=\"../assets/themes/Company/images/partners/partner1.png\"></a></li>\r\n          <li> <a href=\"#\"><img class=\"img-responsive wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"600ms\" src=\"../assets/themes/Company/images/partners/partner2.png\"></a></li>\r\n          <li> <a href=\"#\"><img class=\"img-responsive wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"900ms\" src=\"../assets/themes/Company/images/partners/partner3.png\"></a></li>\r\n          <li> <a href=\"#\"><img class=\"img-responsive wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"1200ms\" src=\"../assets/themes/Company/images/partners/partner4.png\"></a></li>\r\n          <li> <a href=\"#\"><img class=\"img-responsive wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"1500ms\" src=\"../assets/themes/Company/images/partners/partner5.png\"></a></li>\r\n        </ul>\r\n      </div> </div>\r\n    <!--/.container-->\r\n  </section>\r\n  <!--/#partner-->', 'home', 1, 5),
-(7, 'section6', '\r\n  <section id=\"conatcat-info\">\r\n    <div class=\"container\">\r\n      <div class=\"row\">\r\n\r\n        <div class=\"col-sm-8\">\r\n          <div class=\"media contact-info wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"600ms\">\r\n            <div class=\"pull-left\">\r\n              <i class=\"fa fa-phone\"></i>\r\n            </div>\r\n            <div class=\"media-body\">\r\n              <h2>Have a question or need a custom quote?</h2>\r\n              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation +0123 456 70 80</p>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        </div>\r\n        </div>\r\n</section>', 'home', 1, 6),
-(8, 'section1', '\r\n      <h3>Our company information</h3>\r\n      <hr>\r\n      <div class=\"col-md-7 wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"300ms\">\r\n        <img src=\"../assets/themes/Company/images/7.jpg\" class=\"img-responsive\">\r\n        <h4>We Create, Design and Make it Real</h4>\r\n        <p>Nam tempor velit sed turpis imperdiet vestibulum. In mattis leo ut sapien euismod id feugiat mauris euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus id nulla risus, vel tincidunt\r\n          turpis. Aliquam a nulla mi, placerat blandit eros. </p>\r\n        <p>In neque lectus, lobortis a varius a, hendrerit eget dolor. Fusce scelerisque, sem ut viverra sollicitudin, est turpis blandit lacus, in pretium lectus sapien at est. Integer pretium ipsum sit amet dui feugiat vitae dapibus odio eleifend.</p>\r\n      </div>\r\n      <div class=\"col-md-5 wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"600ms\">\r\n        <div class=\"skill\">\r\n          <h2>Our Skills</h2>\r\n          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\r\n\r\n          <div class=\"progress-wrap\">\r\n            <h3>Graphic Design</h3>\r\n            <div class=\"progress\">\r\n              <div class=\"progress-bar  color1\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 85%\">\r\n                <span class=\"bar-width\">85%</span>\r\n              </div>\r\n\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"progress-wrap\">\r\n            <h4>HTML</h4>\r\n            <div class=\"progress\">\r\n              <div class=\"progress-bar color2\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 95%\">\r\n                <span class=\"bar-width\">95%</span>\r\n              </div>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"progress-wrap\">\r\n            <h4>CSS</h4>\r\n            <div class=\"progress\">\r\n              <div class=\"progress-bar color3\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\">\r\n                <span class=\"bar-width\">80%</span>\r\n              </div>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"progress-wrap\">\r\n            <h4>Wordpress</h4>\r\n            <div class=\"progress\">\r\n              <div class=\"progress-bar color4\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 90%\">\r\n                <span class=\"bar-width\">90%</span>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>', 'about', 1, 1),
-(9, 'section2', '<h3>Our Team</h3>       <div class=\"text-center\">         <div class=\"col-md-4 wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"300ms\">           <img src=\"../assets/themes/Company/images/services/1.jpg\" alt=\"\">           <h4>John Doe</h4>           <p>Lorem ipsum dolor sit amet consectetur adipisicing eil sed deiusmod tempor</p>         </div>         <div class=\"col-md-4 wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"600ms\">           <img src=\"../assets/themes/Company/images/services/2.jpg\" alt=\"\">           <h4>John Doe</h4>           <p>Lorem ipsum dolor sit amet consectetur adipisicing eil sed deiusmod tempor</p>         </div>         <div class=\"col-md-4 wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"900ms\">           <img src=\"../assets/themes/Company/images/services/3.jpg\" alt=\"\">           <h4>John Doe</h4>           <p>Lorem ipsum dolor sit amet consectetur adipisicing eil sed deiusmod tempor</p>         </div>       </div>', 'about', 1, 2),
-(10, 'section1', '       <h3>Company Services</h3>       <hr>       <div class=\"col-md-6\">         <img src=\"../assets/themes/Company/images/4.jpg\" class=\"img-responsive\">         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque libero,           pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque</p>       </div>        <div class=\"col-md-6\">         <div class=\"media\">           <ul>             <li>               <div class=\"media-left\">                 <i class=\"fa fa-pencil\"></i>               </div>               <div class=\"media-body\">                 <h4 class=\"media-heading\">Web Development</h4>                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>               </div>             </li>             <li>               <div class=\"media-left\">                 <i class=\"fa fa-book\"></i>               </div>               <div class=\"media-body\">                 <h4 class=\"media-heading\">Responsive Design</h4>                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>               </div>             </li>             <li>               <div class=\"media-left\">                 <i class=\"fa fa-rocket\"></i>               </div>               <div class=\"media-body\">                 <h4 class=\"media-heading\">Bootstrap Themes</h4>                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>               </div>             </li>           </ul>         </div>       </div>', 'services', 1, 1),
-(11, 'section2', '       <div class=\"col-md-6\">         <div class=\"media\">           <ul>             <li>               <div class=\"media-left\">                 <i class=\"fa fa-pencil\"></i>               </div>               <div class=\"media-body\">                 <h4 class=\"media-heading\">Landing Page</h4>                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>               </div>             </li>             <li>               <div class=\"media-left\">                 <i class=\"fa fa-book\"></i>               </div>               <div class=\"media-body\">                 <h4 class=\"media-heading\">Training</h4>                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>               </div>             </li>             <li>               <div class=\"media-left\">                 <i class=\"fa fa-rocket\"></i>               </div>               <div class=\"media-body\">                 <h4 class=\"media-heading\">Logo Design</h4>                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>               </div>             </li>           </ul>         </div>       </div>        <div class=\"col-md-6\">         <img src=\"../assets/themes/Company/images/4.jpg\" class=\"img-responsive\">         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque libero,           pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque</p>       </div>', 'services', 1, 2);
+(6, 'section5', '\n  <section id=\"partner\">\n    <div class=\"container\"> <div class=\"center wow fadeInDown\">\n        <h2>Our Partners</h2>\n        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>\n      </div>\n\n      <div class=\"partners\">\n        <ul>\n          <li> <a href=\"#\"><img class=\"img-responsive wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"300ms\" src=\"../assets/themes/Company/images/partners/partner1.png\"></a></li>\n          <li> <a href=\"#\"><img class=\"img-responsive wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"600ms\" src=\"../assets/themes/Company/images/partners/partner2.png\"></a></li>\n          <li> <a href=\"#\"><img class=\"img-responsive wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"900ms\" src=\"../assets/themes/Company/images/partners/partner3.png\"></a></li>\n          <li> <a href=\"#\"><img class=\"img-responsive wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"1200ms\" src=\"../assets/themes/Company/images/partners/partner4.png\"></a></li>\n          <li> <a href=\"#\"><img class=\"img-responsive wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"1500ms\" src=\"../assets/themes/Company/images/partners/partner5.png\"></a></li>\n        </ul>\n      </div> </div>\n    <!--/.container-->\n  </section>\n  <!--/#partner-->', 'home', 0, 5),
+(7, 'section6', '\n  <section id=\"conatcat-info\">\n    <div class=\"container\">\n      <div class=\"row\">\n\n        <div class=\"col-sm-8\">\n          <div class=\"media contact-info wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"600ms\">\n            <div class=\"pull-left\">\n              <i class=\"fa fa-phone\"></i>\n            </div>\n            <div class=\"media-body\">\n              <h2>Have a question or need a custom quote?</h2>\n              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation  0123 456 70 80</p>\n            </div>\n          </div>\n        </div>\n        </div>\n        </div>\n</section>', 'home', 1, 6),
+(8, 'section1', '<div class=\"aboutus\">\n<div class=\"container\">\n      <h3>Our company information</h3>\n      <hr>\n      <div class=\"col-md-7 wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"300ms\">\n        <img src=\"../assets/themes/Company/images/7.jpg\" class=\"img-responsive\">\n        <h4>We Create, Design and Make it Real</h4>\n        <p>Nam tempor velit sed turpis imperdiet vestibulum. In mattis leo ut sapien euismod id feugiat mauris euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus id nulla risus, vel tincidunt\n          turpis. Aliquam a nulla mi, placerat blandit eros. </p>\n        <p>In neque lectus, lobortis a varius a, hendrerit eget dolor. Fusce scelerisque, sem ut viverra sollicitudin, est turpis blandit lacus, in pretium lectus sapien at est. Integer pretium ipsum sit amet dui feugiat vitae dapibus odio eleifend.</p>\n      </div>\n      <div class=\"col-md-5 wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"600ms\">\n        <div class=\"skill\">\n          <h2>Our Skills</h2>\n          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n\n          <div class=\"progress-wrap\">\n            <h3>Graphic Design</h3>\n            <div class=\"progress\">\n              <div class=\"progress-bar  color1\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 85%\">\n                <span class=\"bar-width\">85%</span>\n              </div>\n\n            </div>\n          </div>\n\n          <div class=\"progress-wrap\">\n            <h4>HTML</h4>\n            <div class=\"progress\">\n              <div class=\"progress-bar color2\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 95%\">\n                <span class=\"bar-width\">95%</span>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"progress-wrap\">\n            <h4>CSS</h4>\n            <div class=\"progress\">\n              <div class=\"progress-bar color3\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\">\n                <span class=\"bar-width\">80%</span>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"progress-wrap\">\n            <h4>Wordpress</h4>\n            <div class=\"progress\">\n              <div class=\"progress-bar color4\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 90%\">\n                <span class=\"bar-width\">90%</span>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n\n\n      </div>\n      </div>', 'about', 1, 1),
+(9, 'section2', '<div class=\"our-team\">\n<div class=\"container\">\n<h3>Our Team</h3>       <div class=\"text-center\">         <div class=\"col-md-4 wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"300ms\">           <img src=\"../assets/themes/Company/images/services/1.jpg\" alt=\"\">           <h4>John Doe</h4>           <p>Lorem ipsum dolor sit amet consectetur adipisicing eil sed deiusmod tempor</p>         </div>         <div class=\"col-md-4 wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"600ms\">           <img src=\"../assets/themes/Company/images/services/2.jpg\" alt=\"\">           <h4>John Doe</h4>           <p>Lorem ipsum dolor sit amet consectetur adipisicing eil sed deiusmod tempor</p>         </div>         <div class=\"col-md-4 wow fadeInDown\" data-wow-duration=\"1000ms\" data-wow-delay=\"900ms\">           <img src=\"../assets/themes/Company/images/services/3.jpg\" alt=\"\">           <h4>John Doe</h4>           <p>Lorem ipsum dolor sit amet consectetur adipisicing eil sed deiusmod tempor</p>         </div>       </div>\n\n</div>\n</div>', 'about', 1, 2),
+(10, 'section1', '     <div class=\"services\">\n<div class=\"container\">\n  <h3>Company Services</h3>       <hr>       <div class=\"col-md-6\">         <img src=\"../assets/themes/Company/images/4.jpg\" class=\"img-responsive\">         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque libero,           pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque</p>       </div>        <div class=\"col-md-6\">         <div class=\"media\">           <ul>             <li>               <div class=\"media-left\">                 <i class=\"fa fa-pencil\"></i>               </div>               <div class=\"media-body\">                 <h4 class=\"media-heading\">Web Development</h4>                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>               </div>             </li>             <li>               <div class=\"media-left\">                 <i class=\"fa fa-book\"></i>               </div>               <div class=\"media-body\">                 <h4 class=\"media-heading\">Responsive Design</h4>                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>               </div>             </li>             <li>               <div class=\"media-left\">                 <i class=\"fa fa-rocket\"></i>               </div>               <div class=\"media-body\">                 <h4 class=\"media-heading\">Bootstrap Themes</h4>                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>               </div>             </li>           </ul>         </div>       </div>\n</div>\n</div>', 'services', 1, 1),
+(11, 'section2', '     <div class=\"sub-services\">\n<div class=\"container\">  \n<div class=\"col-md-6\">         <div class=\"media\">           <ul>             <li>               <div class=\"media-left\">                 <i class=\"fa fa-pencil\"></i>               </div>               <div class=\"media-body\">                 <h4 class=\"media-heading\">Landing Page</h4>                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>               </div>             </li>             <li>               <div class=\"media-left\">                 <i class=\"fa fa-book\"></i>               </div>               <div class=\"media-body\">                 <h4 class=\"media-heading\">Training</h4>                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>               </div>             </li>             <li>               <div class=\"media-left\">                 <i class=\"fa fa-rocket\"></i>               </div>               <div class=\"media-body\">                 <h4 class=\"media-heading\">Logo Design</h4>                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>               </div>             </li>           </ul>         </div>       </div>        <div class=\"col-md-6\">         <img src=\"../assets/themes/Company/images/4.jpg\" class=\"img-responsive\">         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque libero, pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque libero,           pulvinar tincidunt leo consectetur eget. Curabitur lacinia pellentesque</p>       </div>\n\n</div>\n</div>', 'services', 1, 2),
+(12, 'tinyapi', '2ib73acioj4e1ftii2coubvn3vjzj65xhml5aoxdnftbld0k', '', 0, 0),
+(13, 'googleapi', 'AIzaSyDl1fNnC-kRcfPSi1eaw95L8Csm_0329Xs', '', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `survey_masterlist`
+--
+
+CREATE TABLE `survey_masterlist` (
+  `masterlist_id` int(11) NOT NULL,
+  `town_name` varchar(100) NOT NULL,
+  `town_code` int(11) NOT NULL,
+  `no_of_farmer` int(11) NOT NULL,
+  `year` int(4) NOT NULL DEFAULT '2019',
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -433,7 +457,20 @@ INSERT INTO `tbl_last_login` (`id`, `userId`, `sessionData`, `machineIp`, `userA
 (46, 3, '{\"role\":\"3\",\"roleText\":\"Employee\",\"name\":\"Employee\"}', '127.0.0.1', 'Chrome 65.0.3325.162', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36', 'Windows 10', '2019-04-29 09:32:28'),
 (47, 3, '{\"role\":\"3\",\"roleText\":\"Employee\",\"name\":\"Employee\"}', '127.0.0.1', 'Chrome 65.0.3325.162', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36', 'Windows 10', '2019-04-29 09:38:29'),
 (48, 3, '{\"role\":\"3\",\"roleText\":\"Employee\",\"name\":\"Employee\"}', '127.0.0.1', 'Chrome 65.0.3325.162', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36', 'Windows 10', '2019-04-30 14:37:17'),
-(49, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '192.168.0.200', 'Chrome 73.0.3683.103', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'Windows 10', '2019-04-30 14:57:47');
+(49, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '192.168.0.200', 'Chrome 73.0.3683.103', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'Windows 10', '2019-04-30 14:57:47'),
+(50, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 73.0.3683.103', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'Windows 10', '2019-05-02 11:17:15'),
+(51, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 73.0.3683.103', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'Windows 10', '2019-05-02 15:54:51'),
+(52, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 73.0.3683.103', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'Windows 10', '2019-05-03 08:43:54'),
+(53, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 73.0.3683.103', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36', 'Windows 10', '2019-05-03 15:14:55'),
+(54, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 74.0.3729.131', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36', 'Windows 10', '2019-05-06 08:32:56'),
+(55, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 74.0.3729.131', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36', 'Windows 10', '2019-05-06 14:36:21'),
+(56, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 74.0.3729.131', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36', 'Windows 10', '2019-05-06 21:11:30'),
+(57, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 74.0.3729.131', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36', 'Windows 10', '2019-05-07 08:58:36'),
+(58, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 74.0.3729.131', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36', 'Windows 10', '2019-05-07 13:25:30'),
+(59, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 74.0.3729.131', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36', 'Windows 10', '2019-05-08 01:00:50'),
+(60, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 74.0.3729.131', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36', 'Windows 10', '2019-05-08 09:11:04'),
+(61, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 74.0.3729.131', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36', 'Windows 10', '2019-05-08 13:17:48'),
+(62, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 74.0.3729.131', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36', 'Windows 10', '2019-05-08 16:36:33');
 
 -- --------------------------------------------------------
 
@@ -635,6 +672,12 @@ ALTER TABLE `site_settings`
   ADD PRIMARY KEY (`settings_id`);
 
 --
+-- Indexes for table `survey_masterlist`
+--
+ALTER TABLE `survey_masterlist`
+  ADD PRIMARY KEY (`masterlist_id`);
+
+--
 -- Indexes for table `tbl_last_login`
 --
 ALTER TABLE `tbl_last_login`
@@ -702,55 +745,61 @@ ALTER TABLE `pestdisease`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `respondents`
 --
 ALTER TABLE `respondents`
-  MODIFY `respondent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `respondent_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `respondents_farm_profile`
 --
 ALTER TABLE `respondents_farm_profile`
-  MODIFY `farm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `farm_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `respondents_organizations`
 --
 ALTER TABLE `respondents_organizations`
-  MODIFY `org_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `org_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `respondents_pest_disease`
 --
 ALTER TABLE `respondents_pest_disease`
-  MODIFY `pest_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `pest_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `respondents_post_harvest`
 --
 ALTER TABLE `respondents_post_harvest`
-  MODIFY `harvet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `harvet_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `respondents_production_management`
 --
 ALTER TABLE `respondents_production_management`
-  MODIFY `production_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `production_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `site_settings`
 --
 ALTER TABLE `site_settings`
-  MODIFY `settings_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `settings_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `survey_masterlist`
+--
+ALTER TABLE `survey_masterlist`
+  MODIFY `masterlist_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_last_login`
 --
 ALTER TABLE `tbl_last_login`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `tbl_reset_password`
@@ -774,13 +823,13 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT for table `tbl_visits`
 --
 ALTER TABLE `tbl_visits`
-  MODIFY `visit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `visit_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user_activity`
 --
 ALTER TABLE `user_activity`
-  MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
