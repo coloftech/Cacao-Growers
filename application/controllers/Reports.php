@@ -29,6 +29,7 @@ class Reports extends BaseController
         $this->isLoggedIn();   
     	$this->load->model('respondent_model','respondent');
             $this->load->model('post_model','posts');
+            $this->load->model('reports_model','reports');
     }
     
     /**
@@ -211,6 +212,39 @@ class Reports extends BaseController
     public function graphical($value='')
     {
         # code...
+        $trees = $this->reports->graphnoTrees();
+        //print_r($trees);
+        $label_1 = [];
+        $data_1 = [];
+        $i=0;
+        foreach ($trees as $key) {
+            # code...
+            $label_1[] = $key->no_of_trees;
+            $data_1[] = $key->total_farmers;
+            $i++;
+        }
+
+        $this->global['pielabel'] = $label_1;
+        $this->global['piedata'] = $data_1;
+
+        $this->load->model('masterlist_model','masterlist');
+        $surveydata = $this->masterlist->listall();
+        $dataset_1 = [];
+        $dataset_2 = [];
+        $labels = [];
+        foreach ($surveydata as $key) {
+            # code...
+            $key = (object)$key;
+            $dataset_1[] = $key->no_of_farmer;
+            $dataset_2[] = $key->no_of_respondent;
+            $labels[] = $key->town_name;
+        }
+
+
+        $this->global['surveyLabels'] = $labels;
+        $this->global['surveyDataset1'] = $dataset_1;
+        $this->global['surveyDataset2'] = $dataset_2;
+
 
         $this->global['pageTitle'] = 'Reports - graphical';              
         $this->loadViews("reports/graphical/index", $this->global, NULL , NULL);

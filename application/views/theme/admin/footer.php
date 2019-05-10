@@ -3,10 +3,15 @@
 </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
+
+<div class="print hidden" style="text-align: left;">
+      <span>Source: <?=str_replace('/','',str_replace('http://','',base_url()))?></span>&nbsp;
+      <span>Date printed: <?=date('Y-m-d H:i:s')?></span>
+</div>
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2019 <a href="//phlab.tech">phlab.tech</a>.</strong> All rights
+    <strong>Copyright &copy; 2019 <a href="">Cacao Growers Directory</a>.</strong> All rights
     reserved.
   </footer>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

@@ -80,4 +80,30 @@ class Reports_model extends CI_Model
 		return false;
 
 	}
+
+	public function graphnoTrees($value='')
+	{
+		# code...
+		$query = $this->db->select('count(respondents.respondent_id) as total_farmers,no_of_trees')
+				->from('respondents')
+				->join('respondents_farm_profile','respondents_farm_profile.respondent_id = respondents.respondent_id')
+				->group_by('no_of_trees')
+				->where('YEAR(date_of_survey)',2019)
+				->get();
+				return $query->result();
+
+	}
+
+	public function graphSurveyData($value='')
+	{
+		# code...
+		$query = $this->db->select('count(respondents.respondent_id) as total_farmers,no_of_trees')
+				->from('respondents')
+				->join('respondents_farm_profile','respondents_farm_profile.respondent_id = respondents.respondent_id')
+				->group_by('no_of_trees')
+				->where('YEAR(date_of_survey)',2019)
+				->get();
+				return $query->result();
+
+	}
 }

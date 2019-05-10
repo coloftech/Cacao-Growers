@@ -58,7 +58,7 @@
   <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/plugins/alertifyjs/css/alertify.min.css">
   <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/admin.style-v1.14.css')?>">
 
-    <link rel="stylesheet" type="text/css"  media="print"  href="<?php echo base_url(); ?>assets/css/print.css">
+    <link rel="stylesheet" type="text/css"  media="print"  href="<?php echo base_url(); ?>assets/css/print-1.css">
 
 <!-- jQuery 3 -->
 <script src="<?=base_url('assets')?>/bower_components/jquery/dist/jquery.min.js"></script>
@@ -568,3 +568,6 @@ switch (e) {
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <div class="print hidden">
+      <h2>Cacao Growers Directory</h2>
+    </div>
