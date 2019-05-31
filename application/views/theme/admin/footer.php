@@ -83,7 +83,9 @@
     <?php if (isset($visits)): ?>
    	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/map-visits-v.0.2.js"></script>      
     <?php endif ?>
+    
    	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cacao-v.1.3.js"></script>
+
 
     <?php if (isset($mapping)): ?>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cacao-mapping-v1.3.js"></script>

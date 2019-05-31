@@ -235,24 +235,24 @@ class Asurvey extends BaseController
         $Obj = (object)$post;
 
         if(isset($Obj->land_ownership)){
-            $land_ownership = implode(',',$Obj->land_ownership);
+            $land_ownership = implode('~',$Obj->land_ownership);
         }else{
             $land_ownership='Undefined';
         }
 
         if(isset($Obj->CacaoClones)){
-            $clones = implode(',',$Obj->CacaoClones);
+            $clones = implode('~',$Obj->CacaoClones);
         }else{
             $clones='';
         }
 
         if(isset($Obj->propagationtype)){
-            $propagationtype = implode(',',$Obj->propagationtype);
+            $propagationtype = implode('~',$Obj->propagationtype);
         }else{
             $propagationtype='';
         }
         if(isset($Obj->Cacaovarieties)){
-            $Cacaovarieties = implode(',',$Obj->Cacaovarieties);
+            $Cacaovarieties = implode('~',$Obj->Cacaovarieties);
         }else{
             $Cacaovarieties='';
         }

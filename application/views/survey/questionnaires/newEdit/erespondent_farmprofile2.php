@@ -359,20 +359,20 @@
                 
                 <div class="choices">
                    <div class="xradio col-md-4">
-                    <div class="xradio-success">                      
-                    <input type="radio" name="cacaoStatus" id="cfs1" value="Newly established" checked="true">
+                    <div class="xradio-primary">                      
+                    <input type="checkbox" name="cacaoStatus" id="cfs1" value="Newly established" checked="true">
                     <label for="cfs1">Newly established</label>
                     </div>
                   </div> 
                   <div class="xradio col-md-4">
-                    <div class="xradio-success">                      
-                    <input type="radio" name="cacaoStatus" id="cfs2" value="Rehabilitated">
+                    <div class="xradio-primary">                      
+                    <input type="checkbox" name="cacaoStatus" id="cfs2" value="Rehabilitated">
                     <label for="cfs2">Rehabilitated</label>
                     </div>
                   </div> 
                   <div class="xradio col-md-4">
-                    <div class="xradio-success">                      
-                    <input type="radio" name="cacaoStatus" id="cfs3" value="Inherited without rehabilitation">
+                    <div class="xradio-primary">                      
+                    <input type="checkbox" name="cacaoStatus" id="cfs3" value="Inherited without rehabilitation">
                     <label for="cfs3">Inherited without rehabilitation</label>
                     </div>
                   </div> 
@@ -387,13 +387,13 @@
                 <div class="choices">
                    <div class="xradio col-md-4">
                     <div class="xradio-primary">                      
-                    <input type="checkbox" name="propagationtype[]" id="tp1" value="Sexual (e.g. seeds)" checked="">
+                    <input type="checkbox" name="propagationtype[]" id="tp1" value="Sexual" checked="">
                     <label for="tp1">Sexual (e.g. seeds)</label>
                     </div>
                   </div> 
                   <div class="xradio col-md-4">
                     <div class="xradio-primary">                      
-                    <input type="checkbox" name="propagationtype[]" id="tp2" value="Asexual (e.g. grafted, budded)">
+                    <input type="checkbox" name="propagationtype[]" id="tp2" value="Asexual">
                     <label for="tp2">Asexual (e.g. grafted, budded)</label>
                     </div>
                   </div> 
@@ -534,6 +534,7 @@ if (farmall) {
       var input = $(this);
       var val = $(this).val();
 
+console.log(val)
          
         dland_ownership.forEach(function(item) {  
           
@@ -552,11 +553,15 @@ if (farmall) {
       });
 
         propagationtypes.forEach(function(item) {  
+            var newp = item.split('|')
+            newp.forEach(function(newItem){
 
-          if(val.toLowerCase() == item.toLowerCase()){
+               if(val.toLowerCase() == newItem.toLowerCase()){
              
                 input.prop('checked', true);
-          }
+                }
+            })
+         
       });
 
         cacao_varieties.forEach(function(item) {  
