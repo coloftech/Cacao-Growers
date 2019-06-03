@@ -30,6 +30,7 @@
                          		 <h3 class="box-title">Cacao Marketing Reports</h3>
 
 					              <div class="box-tools pull-right">
+                          <button type="button" class="btn btn-box-tool btn-download"><i class="fa fa-download"></i></button>
 					                <button type="button" class="btn btn-box-tool btn-print"><i class="fa fa-print"></i></button>
 					                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 					                </button>
@@ -39,7 +40,7 @@
 					            <div class="box-body">
                         <div class="col-md-12">
                           
-                                <canvas id="chartOwnership" style="height:450px"></canvas>
+                                <canvas id="chartMarketing" style="height:450px"></canvas>
                         </div>
 		              			
 								</div>
@@ -53,15 +54,7 @@
 		</div>
 	</section>
 </div>
-    <?php if (isset($isCharts)): ?>
 
-    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/2.8.0/Chart.min.js"></script>
-    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/chartjs-plugin-colorschemes.min.js"></script>
-    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/chartjs-plugin-labels.js"></script>
-    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/2.8.0/utils.js"></script>
-    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/2.8.0/random_color_array.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cacao-chartjs-v1.0.js"></script>      
-    <?php endif ?>
     <script type="text/javascript">
 
 
@@ -94,7 +87,7 @@
 				
 				});
 
-			//toBarChart(flabels,fdatasets,'chartOwnership')
+			//toBarChart(flabels,fdatasets,'chartMarketing')
 
 	}
 
@@ -104,18 +97,19 @@
     var colors = [];
     var color = 12;
     $.each(fdata,function(i,d){
-      labels.push(d.label);
-      datas.push(d.total);
-      colors.push(colorArray[color]);
-      color++;
+    	if (d.label != undefined && d.label != 'Undefined') {
+	      labels.push(d.label);
+	      datas.push(d.total);
+	      colors.push(colorArray[color]);
+	      color++;
+		}
     });
     var config = {
-      type: 'doughnut',
+      type: 'pie',
       data: {
         datasets: [{
           data: datas,
-          backgroundColor: colors,
-          label: 'Disease Control'
+          backgroundColor: colors
         }],
         labels: labels
       },
@@ -123,6 +117,12 @@
         responsive: true,
           legend: {
             position: 'right',
+          },
+          title: {
+            display: true,
+            text: 'Cacao Marketing Report Chart',
+            fontSize: 16,
+            padding: 10
           },
 
           plugins:{
@@ -132,7 +132,7 @@
           }
       }
     };
-    toPieChart(config,'chartOwnership')
+    toPieChart(config,'chartMarketing')
   }
  var  toPieChart = function(config,elem){
 

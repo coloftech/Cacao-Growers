@@ -293,10 +293,29 @@ class Charts_model extends CI_Model
 		$query = $this->db->select('count('.$this->respondents.'.respondent_id) as total, fertilizer_applied as label, city_name as city')
 			->from($this->respondents)
 			->join($this->production ,$this->production.'.respondent_id = '.$this->respondents.'.respondent_id','LEFT')
-			->group_by('city')
+			->group_by('label,city')
 			->order_by('city')
 			->get();
-			return $query->result();
+			$result =  $query->result();
+			
+        	$result2 =  str_explodeToChart($result,true);
+
+            $GroupByCity = groupArray($result2,'city');
+
+            $array =  array();
+            foreach ($GroupByCity as $key => $value) {
+            	# code...
+            	$group = groupArray($value,'label');
+
+            		$sumArray = array();
+            	foreach ($group as $label => $total) {
+            		# code...
+            		$sum = array_sum($total);
+            		$sumArray[] = array('label'=>$label,'total'=>$sum);
+            	}
+            	$array[$key] = $sumArray;
+            }
+            return $array;
 			
 	}
 

@@ -31,6 +31,8 @@
                          		 <h3 class="box-title">Cropping system</h3>
 
 					              <div class="box-tools pull-right">
+
+                          <button type="button" class="btn btn-box-tool btn-download"><i class="fa fa-download"></i></button>
 					                <button type="button" class="btn btn-box-tool btn-print"><i class="fa fa-print"></i></button>
 					                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 					                </button>
@@ -57,6 +59,7 @@
                              <h3 class="box-title">Fertilizer applied</h3>
 
                         <div class="box-tools pull-right">
+                          <button type="button" class="btn btn-box-tool btn-download"><i class="fa fa-download"></i></button>
                           <button type="button" class="btn btn-box-tool btn-print"><i class="fa fa-print"></i></button>
                           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                           </button>
@@ -80,15 +83,6 @@
 		</div>
 	</section>
 </div>
-    <?php if (isset($isCharts)): ?>
-
-    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/2.8.0/Chart.min.js"></script>
-    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/chartjs-plugin-colorschemes.min.js"></script>
-    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/chartjs-plugin-labels.js"></script>
-    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/2.8.0/utils.js"></script>
-    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/2.8.0/random_color_array.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cacao-chartjs-v1.0.js"></script>      
-    <?php endif ?>
     <script type="text/javascript">
 
 
@@ -111,6 +105,7 @@
 
 	function tocropping_system(fdata){
     
+console.log(fdata)
   var nlabels = [];
   var ndataset = [];
   var npropagationType = ['Sexual','Asexual'];
@@ -141,20 +136,47 @@
 
   function tofertilizer(fdata){
     
-      var flabels = [];
-      var fdatasets = [];
+  var nlabels = [];
+  var ndataset = [];
+  var npropagationType = ['Organic','Inorganic'];
+  var org = [];
+  var ino = [];
 
-      var length = fdata.length
-      var count = 0;
+  $.each(fdata,function(i,d){
+        var x = 0, y=0;
+      $.each(d, function(a,b){
 
-      $.each(fdata,function(i,d){
+          if (b.label == 'Organic') {
+            org.push(b.total)
+            x++;
+          }
+          if (b.label == 'Inorganic fertilizer') {
 
-        flabels.push(d.label)
-        fdatasets.push(d.total)
-        
-        });
+            ino.push(b.total)
+            y++;
+          }
 
-      toBarChart(flabels,fdatasets,'chartFertilizer')
+
+      })
+
+
+          if(x == 0){
+            org.push(0)
+
+          }
+          if(y == 0){
+            ino.push(0)
+          }
+    nlabels.push(i);
+
+  })
+
+      ndataset.push({label:'Inorganic',data:ino,backgroundColor:colorArray[12]})
+      ndataset.push({label:'Organic',data:org,backgroundColor:colorArray[13]})
+
+     toGroupBarChart(nlabels,ndataset,'chartFertilizer','Fertilizer');
+
+
 
   }
 

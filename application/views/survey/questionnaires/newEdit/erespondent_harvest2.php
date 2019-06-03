@@ -85,19 +85,37 @@
                     <input type="checkbox" name="pod_processing[]" id="bean_processing" value="Bean Processing" >
                     <label for="bean_processing">Bean Processing</label>
                     </div>
+
                         <div class="radio-child hidden">
                           
                              <div class="xradio col-md-12">
                               <div class="xradio-success">                      
-                              <input type="radio" name="bean_processing" id="bean_processing_1" value="Manual" >
-                              <label for="bean_processing_1">Manual</label>
+                              <input type="radio" name="bean_processing" id="bean_processing_1" value="Fermented" checked="true">
+                              <label for="bean_processing_1">Fermented</label>
                               </div>
                             </div> 
                             <div class="xradio col-md-12">
                               <div class="xradio-success">                      
-                              <input type="radio" name="bean_processing" id="bean_processing_2" value="Mechanical">
-                              <label for="bean_processing_2">Mechanical</label>
+                              <input type="radio" name="bean_processing" id="bean_processing_2" value="Dried">
+                              <label for="bean_processing_2">Dried</label>
                               </div>
+
+                                <div class="radio-child-child hidden">
+                                  
+                                     <div class="xradio col-md-12">
+                                      <div class="xradio-success">                      
+                                      <input type="radio" name="bean_processing_dried" id="bean_processing_2_1" value="Solar">
+                                      <label for="bean_processing_2_1">Solar</label>
+                                      </div>
+                                    </div> 
+                                    <div class="xradio col-md-12">
+                                      <div class="xradio-success">                      
+                                      <input type="radio" name="bean_processing_dried" id="bean_processing_2_2" value="Mechanical">
+                                      <label for="bean_processing_2_2">Mechanical</label>
+                                      </div>
+                                    </div> 
+
+                                </div>
                             </div> 
 
                         </div>
@@ -281,6 +299,18 @@ $(function(){
 
     }
   })
+
+  $('input[name="bean_processing"]').on('click',function () {
+      var val = $.trim(this.value);
+      if(val == 'Dried'){
+
+      $(this).parent().parent().find('.radio-child-child').removeClass('hidden')
+      }else{
+
+      $('#bean_processing_2').parent().parent().find('.radio-child-child').addClass('hidden')
+      }
+ 
+  })
   var checkboxHarvest = function (data) {
 
     if (data.pod_processing){
@@ -319,6 +349,7 @@ $(function(){
           input.prop('checked',true)
         }
       }
+
       if (name == 'bean_roasting') {
         if (data.pod_breaking == val) {
           input.prop('checked',true)
@@ -349,6 +380,7 @@ $(function(){
   }
   
   var checkedRadioHarvest = function(data){
+    
     $('#frmharvest input:radio').removeAttr('checked');
     var radio = $('#frmharvest input:radio');
     $.each(radio,function(){
@@ -369,6 +401,15 @@ $(function(){
       if(data.pod_processing == val &&  'pod_processing' == parent ){
         $(this).prop('checked',true);
       }
+      if(val == 'Dried' && data.bean_processing =='Dried'){
+
+      $('#bean_processing_2').parent().parent().find('.radio-child-child').removeClass('hidden')
+      }
+
+      if(data.bean_processing_dried == val ){
+        $(this).prop('checked',true);
+      }
     })
   }
+
  </script>

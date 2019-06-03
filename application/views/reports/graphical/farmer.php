@@ -32,6 +32,7 @@
                          		 <h3 class="box-title">Farmer Affiliation</h3>
 
 					              <div class="box-tools pull-right">
+                          <button type="button" class="btn btn-box-tool btn-download"><i class="fa fa-download"></i></button>
 					                <button type="button" class="btn btn-box-tool btn-print"><i class="fa fa-print"></i></button>
 					                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 					                </button>
@@ -55,6 +56,7 @@
                              <h3 class="box-title">Farmer Organization</h3>
 
                         <div class="box-tools pull-right">
+                          <button type="button" class="btn btn-box-tool btn-download"><i class="fa fa-download"></i></button>
                           <button type="button" class="btn btn-box-tool btn-print"><i class="fa fa-print"></i></button>
                           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                           </button>
@@ -80,8 +82,8 @@
 					              <h3 class="box-title">No of Cacao Gowers in Bohol</h3>
 
 					              <div class="box-tools pull-right">
-					                <button type="button" class="btn btn-md btn-success btn-download" data-canvas="chartGrowers"><i class="fa fa-download"></i></button>
-					                <button type="button" class="btn btn-md btn-default btn-print"><i class="fa fa-print"></i></button>
+                          <button type="button" class="btn btn-box-tool btn-download"><i class="fa fa-download"></i></button>
+					                <button type="button" class="btn btn-box-tool btn-print"><i class="fa fa-print"></i></button>
 					                
 					            </div>
 					            <div class="box-body">
@@ -100,15 +102,6 @@
 	</section>
 </div>
 
-<?php if (isset($isCharts)): ?>
-
-    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/2.8.0/Chart.min.js"></script>
-    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/chartjs-plugin-colorschemes.min.js"></script>
-    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/chartjs-plugin-labels.js"></script>
-    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/2.8.0/utils.js"></script>
-    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/2.8.0/random_color_array.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cacao-chartjs-v1.0.js"></script>      
-    <?php endif ?>
 <script type="text/javascript">
 $(function(){
 
@@ -362,17 +355,6 @@ $('.btn-download').on('click',function(){
 	download(canvas)
 });
 
-  var dateFormat = function(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-
-    return [year, month, day].join('-');
-}
 
 	function showDoughnut(pielabel,piedata,elem,type='doughnut') {
 		// body...

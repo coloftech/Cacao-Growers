@@ -13,8 +13,25 @@ var download = function(canvas){
   link.download = canvas+'-'+dateFormat(date)+'.png';
   link.href = document.getElementById(canvas).toDataURL()
   link.click();
+  notify('success','Chart was successfully downloaded.')
+}
+  var dateFormat = function(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
 }
 
+$(document).on('click','.btn-download',function(){
+  var parent =  $(this).parent().parent().parent();
+  var canvas = parent.find('canvas');
+  download(canvas.attr('id'));
+})
 const groupBy = key => array =>
   array.reduce((objectsByKeyValue, obj) => {
     const value = obj[key];

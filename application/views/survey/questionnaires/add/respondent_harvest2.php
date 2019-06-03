@@ -88,15 +88,32 @@
                           
                              <div class="xradio col-md-12">
                               <div class="xradio-success">                      
-                              <input type="radio" name="bean_processing" id="bean_processing_1" value="Manual" checked="true">
-                              <label for="bean_processing_1">Manual</label>
+                              <input type="radio" name="bean_processing" id="bean_processing_1" value="Fermented" checked="true">
+                              <label for="bean_processing_1">Fermented</label>
                               </div>
                             </div> 
                             <div class="xradio col-md-12">
                               <div class="xradio-success">                      
-                              <input type="radio" name="bean_processing" id="bean_processing_2" value="Mechanical">
-                              <label for="bean_processing_2">Mechanical</label>
+                              <input type="radio" name="bean_processing" id="bean_processing_2" value="Dried">
+                              <label for="bean_processing_2">Dried</label>
                               </div>
+
+                                <div class="radio-child-child hidden">
+                                  
+                                     <div class="xradio col-md-12">
+                                      <div class="xradio-success">                      
+                                      <input type="radio" name="bean_processing_dried" id="bean_processing_2_1" value="Solar">
+                                      <label for="bean_processing_2_1">Solar</label>
+                                      </div>
+                                    </div> 
+                                    <div class="xradio col-md-12">
+                                      <div class="xradio-success">                      
+                                      <input type="radio" name="bean_processing_dried" id="bean_processing_2_2" value="Mechanical">
+                                      <label for="bean_processing_2_2">Mechanical</label>
+                                      </div>
+                                    </div> 
+
+                                </div>
                             </div> 
 
                         </div>
@@ -264,5 +281,17 @@
     $(this).parent().parent().find('.radio-child').closest('input:radio').removeAttr('checked')
 
     }
+  })
+
+  $('input[name="bean_processing"]').on('click',function () {
+      var val = $.trim(this.value);
+      if(val == 'Dried'){
+
+      $(this).parent().parent().find('.radio-child-child').removeClass('hidden')
+      }else{
+
+      $('#bean_processing_2').parent().parent().find('.radio-child-child').addClass('hidden')
+      }
+ 
   })
  </script>

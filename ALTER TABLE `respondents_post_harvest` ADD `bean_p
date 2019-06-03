@@ -1,0 +1,1 @@
+ALTER TABLE `respondents_post_harvest` ADD `bean_processing_dried` VARCHAR(20) NULL DEFAULT NULL AFTER `bean_processing`;

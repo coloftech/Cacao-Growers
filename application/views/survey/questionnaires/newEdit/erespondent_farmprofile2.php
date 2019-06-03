@@ -376,6 +376,26 @@
                     <label for="cfs3">Inherited without rehabilitation</label>
                     </div>
                   </div> 
+
+                  <div class="xradio col-md-4">
+                    <div class="xradio-success">                      
+                    <input type="radio" name="cacaoStatus" id="cfs6" value="Tenanted without rehabilitation">
+                    <label for="cfs6">Tenanted without rehabilitation</label>
+                    </div>
+                  </div> 
+                  
+                  <div class="xradio col-md-4">
+                    <div class="xradio-success">                      
+                    <input type="radio" name="cacaoStatus" id="cfs4" value="Undefined">
+                    <label for="cfs4">Undefined</label>
+                    </div>
+                  </div> 
+                  <div class="xradio col-md-4">
+                    <div class="xradio-success">                      
+                    <input type="radio" name="cacaoStatus" id="cfs5" value="Others">
+                    <label for="cfs5">Others</label>
+                    </div>
+                  </div> 
                 </div>
 
               </div>
@@ -534,7 +554,6 @@ if (farmall) {
       var input = $(this);
       var val = $(this).val();
 
-console.log(val)
          
         dland_ownership.forEach(function(item) {  
           
