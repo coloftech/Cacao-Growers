@@ -16,7 +16,7 @@ class Home extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->webvisitors->run();
+        $this->guests->save();
         $this->load->model('settings_model','settings');
         $this->load->model('post_model','posts');
     }
@@ -34,7 +34,7 @@ class Home extends BaseController
     public function about($value='')
     {
     	# code...
-
+        //echo $this->uri->uri_string();
         $this->global['homeSettings'] = $this->settings->getbysection('about',true);
         $this->global['activemenu'] = 'about';
         $this->global['pageTitle'] = 'Bohol Cacao Farms : Welcome';

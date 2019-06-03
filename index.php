@@ -346,6 +346,7 @@ switch (ENVIRONMENT)
 
 	define('UPLOADPATH', $upload_folder.DIRECTORY_SEPARATOR);
 	
+    define('PUBPATH', dirname(__FILE__));
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE

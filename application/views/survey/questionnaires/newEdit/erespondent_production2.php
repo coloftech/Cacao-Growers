@@ -4,14 +4,22 @@
                 <label class="question">Farm coordinates</label>
                 <div class="choices">
                     <div class="width-full">
-                        <div class="width-half">
-                            <input type="text" class="form-control" name="coordinates_lat" placeholder="Lat"  value="<?=isset($productions[0]->latitude) ? $productions[0]->latitude: '';?>">
+                        <div class="width-half"><span id="lat" class="hidden"><?=isset($productions[0]->latitude) ? $productions[0]->latitude: '';?></span>
+                            <input type="text" class="form-control" name="coordinates_lat" placeholder="Lat"  value="">
                         </div>
-                        <div class="width-half">
-                            <input type="text" class="form-control" name="coordinates_long" placeholder="Long"  value="<?=isset($productions[0]->longitude) ? $productions[0]->longitude: '';?>">
+                        <div class="width-half"><span id="long" class="hidden"><?=isset($productions[0]->longitude) ? $productions[0]->longitude: '';?></span>
+                            <input type="text" class="form-control" name="coordinates_long" placeholder="Long"  value="">
                         </div>
                 
                     </div>
+                    <script type="text/javascript">
+                      $(function(){
+                        var lat = $('#lat').text();
+                        $('input[name="coordinates_lat"]').val(lat);
+                        var long = $('#long').text();
+                        $('input[name="coordinates_long"]').val(long);
+                      })
+                    </script>
                 </div>
               </div>
               <div class="form-group width-full" id="div_production">

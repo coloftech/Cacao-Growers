@@ -235,24 +235,24 @@ class Asurvey extends BaseController
         $Obj = (object)$post;
 
         if(isset($Obj->land_ownership)){
-            $land_ownership = implode(',',$Obj->land_ownership);
+            $land_ownership = implode('~',$Obj->land_ownership);
         }else{
             $land_ownership='Undefined';
         }
 
         if(isset($Obj->CacaoClones)){
-            $clones = implode(',',$Obj->CacaoClones);
+            $clones = implode('~',$Obj->CacaoClones);
         }else{
             $clones='';
         }
 
         if(isset($Obj->propagationtype)){
-            $propagationtype = implode(',',$Obj->propagationtype);
+            $propagationtype = implode('~',$Obj->propagationtype);
         }else{
             $propagationtype='';
         }
         if(isset($Obj->Cacaovarieties)){
-            $Cacaovarieties = implode(',',$Obj->Cacaovarieties);
+            $Cacaovarieties = implode('~',$Obj->Cacaovarieties);
         }else{
             $Cacaovarieties='';
         }
@@ -411,6 +411,7 @@ class Asurvey extends BaseController
        
 
         $pod_processing = isset($obj->pod_processing) ? $obj->pod_processing :NULL;
+        $bean_processing_dried = isset($obj->bean_processing_dried) ? $obj->bean_processing_dried :NULL;
 
         $pod_processing_1 ='';
         $pod_processing_2 ='';
@@ -465,6 +466,7 @@ class Asurvey extends BaseController
             'pod_processing'=>isset($obj->pod_processing) ? implode(',', $obj->pod_processing) :NULL,
             'pod_breaking'=>$pod_processing_1,
             'bean_processing'=>$pod_processing_2,
+            'bean_processing_dried'=>$bean_processing_dried,
             'bean_sorting'=>$pod_processing_3,
             'bean_roasting'=>$pod_processing_4,
             'winnowing'=>$pod_processing_5,

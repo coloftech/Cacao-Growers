@@ -3,10 +3,15 @@
 </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
+
+<div class="print hidden" style="text-align: left;">
+      <span>Source: <?=str_replace('/','',str_replace('http://','',base_url()))?></span>&nbsp;
+      <span>Date printed: <?=date('Y-m-d H:i:s')?></span>
+</div>
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2019 <a href="//phlab.tech">phlab.tech</a>.</strong> All rights
+    <strong>Copyright &copy; 2019 <a href="">Cacao Growers Directory</a>.</strong> All rights
     reserved.
   </footer>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -78,7 +83,9 @@
     <?php if (isset($visits)): ?>
    	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/map-visits-v.0.2.js"></script>      
     <?php endif ?>
+    
    	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cacao-v.1.3.js"></script>
+
 
     <?php if (isset($mapping)): ?>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cacao-mapping-v1.3.js"></script>
@@ -88,5 +95,14 @@
 
     <?php endif ?>
 
+    <?php if (isset($isCharts)): ?>
+
+    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/2.8.0/Chart.min.js"></script>
+    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/chartjs-plugin-colorschemes.min.js"></script>
+    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/chartjs-plugin-labels.js"></script>
+    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/2.8.0/utils.js"></script>
+    <script type="text/javascript" src="<?=base_url('assets')?>/plugins/chartjs/2.8.0/random_color_array.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/cacao-chartjs-v1.1.js"></script>      
+    <?php endif ?>
 </body>
 </html>

@@ -382,6 +382,12 @@
                     <label for="cfs3">Inherited without rehabilitation</label>
                     </div>
                   </div> 
+                  <div class="xradio col-md-4">
+                    <div class="xradio-success">                      
+                    <input type="radio" name="cacaoStatus" id="cfs6" value="Tenanted without rehabilitation">
+                    <label for="cfs6">Tenanted without rehabilitation</label>
+                    </div>
+                  </div> 
 
                   <div class="xradio col-md-4">
                     <div class="xradio-success">                      
@@ -406,13 +412,13 @@
                 <div class="choices">
                    <div class="xradio col-md-4">
                     <div class="xradio-primary">                      
-                    <input type="checkbox" name="propagationtype[]" id="tp1" value="Sexual (e.g. seeds)" checked="">
+                    <input type="checkbox" name="propagationtype[]" id="tp1" value="Sexual" checked="">
                     <label for="tp1">Sexual (e.g. seeds)</label>
                     </div>
                   </div> 
                   <div class="xradio col-md-4">
                     <div class="xradio-primary">                      
-                    <input type="checkbox" name="propagationtype[]" id="tp2" value="Asexual (e.g. grafted, budded)">
+                    <input type="checkbox" name="propagationtype[]" id="tp2" value="Asexual">
                     <label for="tp2">Asexual (e.g. grafted, budded)</label>
                     </div>
                   </div> 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?php echo $pageTitle; ?></title>
   <!-- Tell the browser to be responsive to screen width -->
@@ -58,7 +58,7 @@
   <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/plugins/alertifyjs/css/alertify.min.css">
   <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/admin.style-v1.14.css')?>">
 
-    <link rel="stylesheet" type="text/css"  media="print"  href="<?php echo base_url(); ?>assets/css/print.css">
+    <link rel="stylesheet" type="text/css"  media="print"  href="<?php echo base_url(); ?>assets/css/print-1.css">
 
 <!-- jQuery 3 -->
 <script src="<?=base_url('assets')?>/bower_components/jquery/dist/jquery.min.js"></script>
@@ -414,7 +414,7 @@ switch (e) {
           </ul>
         </li>
 
-        <li class="treeview">
+        <li class="treeview hidden">
           <a href="#">
             <i class="fa fa-apple"></i>
             <span>Cacao settings</span>
@@ -430,7 +430,7 @@ switch (e) {
         </li>
 
 
-        <li>
+        <li class="hidden">
           <a href="#<?=site_url('announcement')?>">
             <i class="fa fa-bullhorn"></i> <span>Announcement</span>
             <span class="pull-right-container">
@@ -455,7 +455,7 @@ switch (e) {
           </a>
         </li>
 
-        <li>
+        <li class="hidden">
           <a href="<?=site_url('mail')?>">
             <i class="fa fa-envelope"></i> <span>Messages</span>
             <span class="pull-right-container">
@@ -489,13 +489,21 @@ switch (e) {
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=base_url('reports/graphical')?>"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-            <li><a href="<?=base_url('assets')?>/pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-            <li><a href="<?=base_url('assets')?>/pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href="<?=base_url('assets')?>/pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+            <li><a href="<?=base_url('graphical/farmers')?>"><i class="fa fa-circle-o"></i>Farmers</a></li>
+            <li><a href="<?=base_url('graphical/farmprofile')?>"><i class="fa fa-circle-o"></i>Farm profile</a></li>
+
+            <li><a href="<?=base_url('graphical/pestdisease')?>"><i class="fa fa-circle-o"></i>Pest & disease</a></li>
+            <li><a href="<?=base_url('graphical/production')?>"><i class="fa fa-circle-o"></i>Production management</a></li>
+            <li><a href="<?=base_url('graphical/postharvest')?>"><i class="fa fa-circle-o"></i>Post harvest</a></li>
+            <li><a href="<?=base_url('graphical/marketing')?>"><i class="fa fa-circle-o"></i>Marketing</a></li>
+
+
+            <li class="hidden"><a href="<?=base_url('assets')?>/pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
+            <li class="hidden"><a href="<?=base_url('assets')?>/pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
+            <li class="hidden"><a href="<?=base_url('assets')?>/pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="treeview hidden">
           <a href="#">
             <i class="fa fa-edit"></i> <span>Forms</span>
             <span class="pull-right-container">
@@ -508,7 +516,7 @@ switch (e) {
             <li><a href="<?=base_url('assets')?>/pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="treeview hidden">
           <a href="#">
             <i class="fa fa-table"></i> <span>Tables</span>
             <span class="pull-right-container">
@@ -520,7 +528,7 @@ switch (e) {
             <li><a href="<?=base_url('assets')?>/pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
           </ul>
         </li>
-        <li>
+        <li class="hidden">
           <a href="<?=base_url('assets')?>/pages/calendar.html">
             <i class="fa fa-calendar"></i> <span>Calendar</span>
             <span class="pull-right-container">
@@ -529,7 +537,7 @@ switch (e) {
             </span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="treeview hidden">
           <a href="#">
             <i class="fa fa-folder"></i> <span>Examples</span>
             <span class="pull-right-container">
@@ -568,3 +576,6 @@ switch (e) {
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <div class="print hidden">
+      <h2>Cacao Growers Directory</h2>
+    </div>
