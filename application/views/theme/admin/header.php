@@ -447,7 +447,7 @@ switch (e) {
           </a>
         </li>
         <li>
-          <a href="#<?=site_url('gallery')?>">
+          <a href="<?=site_url('gallery')?>">
             <i class="fa fa-camera"></i> <span>Gallery</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right">0</span>
